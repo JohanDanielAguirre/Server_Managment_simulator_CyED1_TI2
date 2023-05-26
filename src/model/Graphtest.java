@@ -11,11 +11,11 @@ public class Graphtest extends TestCase {
         g.agregarVertice(new Vertex("albañiles unidos"));
         g.agregarVertice(new Vertex<>("buses incorporados"));
         g.agregarVertice(new Vertex("Kantiano"));
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(1));
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(2));
-        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(3));
-        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(2));
-        g.agregarArista((Vertex) g.getVertices().get(2), (Vertex) g.getVertices().get(4));
+        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(1),0);
+        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(2),0);
+        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(3),0);
+        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(2),0);
+        g.agregarArista((Vertex) g.getVertices().get(2), (Vertex) g.getVertices().get(4),0);
     }
     public void stage2(){
         g.agregarVertice(new Vertex("bonafon"));
@@ -23,9 +23,9 @@ public class Graphtest extends TestCase {
         g.agregarVertice(new Vertex("albañiles unidos"));
         g.agregarVertice(new Vertex("buses incorporados"));
         g.agregarVertice(new Vertex("Kantiano"));
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(1));
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(2));
-        g.agregarArista((Vertex) g.getVertices().get(3), (Vertex) g.getVertices().get(4));
+        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(1),0);
+        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(2),0);
+        g.agregarArista((Vertex) g.getVertices().get(3), (Vertex) g.getVertices().get(4),0);
     }
     public void stage3(){
         g.agregarVertice(new Vertex("bonafon"));
@@ -33,16 +33,16 @@ public class Graphtest extends TestCase {
         g.agregarVertice(new Vertex("albañiles unidos"));
         g.agregarVertice(new Vertex("buses incorporados"));
         g.agregarVertice(new Vertex("Kantiano"));
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(1));
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(2));
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(3));
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(4));
-        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(2));
-        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(3));
-        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(4));
-        g.agregarArista((Vertex) g.getVertices().get(2), (Vertex) g.getVertices().get(3));
-        g.agregarArista((Vertex) g.getVertices().get(2), (Vertex) g.getVertices().get(4));
-        g.agregarArista((Vertex) g.getVertices().get(3), (Vertex) g.getVertices().get(4));
+        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(1),0);
+        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(2),0);
+        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(3),0);
+        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(4),0);
+        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(2),0);
+        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(3),0);
+        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(4),0);
+        g.agregarArista((Vertex) g.getVertices().get(2), (Vertex) g.getVertices().get(3),0);
+        g.agregarArista((Vertex) g.getVertices().get(2), (Vertex) g.getVertices().get(4),0);
+        g.agregarArista((Vertex) g.getVertices().get(3), (Vertex) g.getVertices().get(4),0);
     }
     public void stage4(){
         g.agregarVertice(new Vertex("bonafon"));
@@ -229,7 +229,7 @@ public class Graphtest extends TestCase {
     @Test
     public void testAddedgenull() {
         g.agregarVertice(new  Vertex("si"));
-        g.agregarArista((Vertex) g.getVertices().get(0),null);
+        g.agregarArista((Vertex) g.getVertices().get(0),null,0);
         Vertex v=(Vertex) g.getVertices().get(0);
         assertEquals(0,v.getAdyacentes().size());
     }
@@ -237,8 +237,8 @@ public class Graphtest extends TestCase {
     public void testAddsameedge() {
         g.agregarVertice(new  Vertex("si"));
         g.agregarVertice(new  Vertex("no"));
-        g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(1));
-        g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(1));
+        g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(1),0);
+        g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(1),0);
         Vertex v=(Vertex) g.getVertices().get(0);
         assertEquals(1,v.getAdyacentes().size());
     }
@@ -249,10 +249,10 @@ public class Graphtest extends TestCase {
         g.agregarVertice(new  Vertex("talvez"));
         g.agregarVertice(new  Vertex("depende"));
         g.agregarVertice(new  Vertex("devezencuando"));
-        g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(1));
-        g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(2));
-        g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(3));
-        g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(4));
+        g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(1),0);
+        g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(2),0);
+        g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(3),0);
+        g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(4),0);
         Vertex v=(Vertex) g.getVertices().get(0);
         assertEquals(4,v.getAdyacentes().size());
     }
