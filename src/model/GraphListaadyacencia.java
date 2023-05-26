@@ -26,7 +26,7 @@ public class GraphListaadyacencia<V> implements  Graph{
         }
     }
     @Override
-    public void agregarArista(Vertex origen, Vertex destino,int peso) {
+    public void agregarArista(Vertex origen, Vertex destino, int peso) {
         if (origen != null && destino != null) {
             for (int i = 0; i < origen.getAdyacentes().size(); i++) {
                 Map.Entry<Vertex<V>, Integer> entry = (Map.Entry<Vertex<V>, Integer>) origen.getAdyacentes().get(i);
@@ -90,6 +90,8 @@ public class GraphListaadyacencia<V> implements  Graph{
             }
         }
     }
+
+
     private void dfs(Vertex<V> v,int t){
         time+=1;
         v.setDistance(t);
@@ -189,7 +191,14 @@ public class GraphListaadyacencia<V> implements  Graph{
         }
         // Construir el árbol mínimo
         GraphListaadyacencia<V> arbolMinimo = new GraphListaadyacencia<>();
-        for (Vertex<V> v : vertices) {arbolMinimo.agregarVertice(new Vertex<>(v.getDato()));}
+        Map<Vertex<V>, Vertex<V>> vertexMap = new HashMap<>();
+
+        for (Vertex<V> v : vertices) {
+            Vertex<V> newVertex = new Vertex<>(v.getDato());
+            arbolMinimo.agregarVertice(newVertex);
+            vertexMap.put(v, newVertex);
+        }
+
         for (Vertex<V> v : parent.keySet()) {
             Vertex<V> p = parent.get(v);
             if (p != null) {
@@ -200,9 +209,12 @@ public class GraphListaadyacencia<V> implements  Graph{
                         break;
                     }
                 }
-                arbolMinimo.agregarArista(arbolMinimo.getVertices().get(arbolMinimo.getVertices().indexOf(p)), arbolMinimo.getVertices().get(arbolMinimo.getVertices().indexOf(v)), peso);
+                Vertex<V> newV = vertexMap.get(v);
+                Vertex<V> newP = vertexMap.get(p);
+                arbolMinimo.agregarArista(newP, newV, peso);
             }
         }
+
         return arbolMinimo;
     }
 }

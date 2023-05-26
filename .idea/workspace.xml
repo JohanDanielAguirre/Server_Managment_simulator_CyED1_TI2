@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="8df48a02-1b9e-42a9-bece-17c21ac52617" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/GraphAdjacencyMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GraphAdjacencyMatrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server_Managment_simulator_CyED1_TI2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Server_Managment_simulator_CyED1_TI2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/GraphListaadyacencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GraphListaadyacencia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Graphtest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Graphtest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +33,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "C:/Users/juans/IdeaProjects/SEM 3/Integradoras/Server_Managment_simulator_CyED1_TI2",
@@ -38,6 +45,29 @@
     "project.structure.side.proportion": "0.0"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Graphtest.testPrim" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Server_Managment_simulator_CyED1_TI2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.Graphtest" />
+      <option name="METHOD_NAME" value="testPrim" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.Graphtest.testPrim" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
