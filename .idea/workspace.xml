@@ -1,39 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="8df48a02-1b9e-42a9-bece-17c21ac52617" name="Changes" comment="">
-<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/GraphAdjacencyMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GraphAdjacencyMatrix.java" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/src/model/Graphtest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Graphtest.java" afterDir="false" />
->>>>>>> 637720a109df45a6217e11a870583138861498de
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-<<<<<<< HEAD
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
       </list>
     </option>
-=======
-  <component name="ComposerSettings">
-    <execution />
->>>>>>> 637720a109df45a6217e11a870583138861498de
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GoLibraries">
-    <option name="indexEntireGoPath" value="true" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -45,31 +30,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-<<<<<<< HEAD
-    "last_opened_file_path": "C:/Users/juans/IdeaProjects/SEM 3/Integradoras/Apo-2---Integradora-3",
-=======
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "dart.analysis.tool.window.visible": "false",
-    "go.import.settings.migrated": "true",
-    "last_opened_file_path": "C:/Users/aguir/Downloads/Server_Managment_simulator_CyED1_TI2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
->>>>>>> 637720a109df45a6217e11a870583138861498de
+    "last_opened_file_path": "C:/Users/juans/IdeaProjects/SEM 3/Integradoras/Server_Managment_simulator_CyED1_TI2",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "ruby.rails.projectView.checked": "true",
-    "vue.rearranger.settings.migration": "true"
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -80,11 +46,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1684680541262</updated>
-      <workItem from="1685062306076" duration="2797000" />
     </task>
     <servers />
   </component>
-<<<<<<< HEAD
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -95,13 +59,5 @@
         </entry>
       </map>
     </option>
-=======
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="VgoProject">
-    <integration-enabled>false</integration-enabled>
-    <settings-migrated>true</settings-migrated>
->>>>>>> 637720a109df45a6217e11a870583138861498de
   </component>
 </project>
