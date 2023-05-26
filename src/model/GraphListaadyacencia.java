@@ -26,20 +26,17 @@ public class GraphListaadyacencia<V> implements  Graph{
         }
     }
     @Override
-    public void agregarArista(Vertex origen, Vertex destino) {
-
-        if((origen!=null && destino!=null) ) {
-            for(int i=0;i<origen.getAdyacentes().size();i++){
-                Map.Entry<Vertex<V>,Integer> k= (Map.Entry<Vertex<V>, Integer>) origen.getAdyacentes().get(i);
-                Vertex v= k.getKey();
-                if(v.equals(destino)){
+    public void agregarArista(Vertex origen, Vertex destino,int peso) {
+        if (origen != null && destino != null) {
+            for (int i = 0; i < origen.getAdyacentes().size(); i++) {
+                Map.Entry<Vertex<V>, Integer> entry = (Map.Entry<Vertex<V>, Integer>) origen.getAdyacentes().get(i);
+                Vertex<V> v = entry.getKey();
+                if (v.equals(destino)) {
                     return;
                 }
             }
-            Map.Entry<Vertex<V>, Integer> v = new AbstractMap.SimpleEntry<>(destino, 0);
-            Map.Entry<Vertex<V>, Integer> x = new AbstractMap.SimpleEntry<>(origen, 0);
-            origen.getAdyacentes().add(v);
-            destino.getAdyacentes().add(x);
+            origen.getAdyacentes().add(new AbstractMap.SimpleEntry<>(destino, peso));
+            destino.getAdyacentes().add(new AbstractMap.SimpleEntry<>(origen, peso));
         }
     }
     @Override
@@ -149,5 +146,63 @@ public class GraphListaadyacencia<V> implements  Graph{
         // Eliminar el vértice de la lista de vértices
         vertices.remove(vertice);
         return true;
+    }
+    public GraphListaadyacencia<V> prim() {
+        if (vertices.size() == 0) {
+            return null;
+        }
+        // Estructuras auxiliares
+        Set<Vertex<V>> visited = new HashSet<>();
+        PriorityQueue<Map.Entry<Vertex<V>, Integer>> minHeap = new PriorityQueue<>(Comparator.comparingInt(Map.Entry::getValue));
+        Map<Vertex<V>, Integer> key = new HashMap<>();
+        Map<Vertex<V>, Vertex<V>> parent = new HashMap<>();
+
+        for (Vertex<V> v : vertices) {
+            key.put(v, Integer.MAX_VALUE);
+            parent.put(v, null);
+        }
+        Vertex<V> origen = vertices.get(0);
+        key.put(origen, 0);
+        minHeap.add(new AbstractMap.SimpleEntry<>(origen, 0));
+        while (!minHeap.isEmpty()) {
+            Vertex<V> u = minHeap.poll().getKey();
+            visited.add(u);
+
+            for (Map.Entry<Vertex<V>, Integer> entry : u.getAdyacentes()) {
+                Vertex<V> v = entry.getKey();
+                int peso = entry.getValue();
+
+                if (!visited.contains(v) && peso < key.get(v)) {
+                    key.put(v, peso);
+                    parent.put(v, u);
+
+                    // Actualizar el peso en el minHeap
+                    for (Map.Entry<Vertex<V>, Integer> heapEntry : minHeap) {
+                        if (heapEntry.getKey().equals(v)) {
+                            minHeap.remove(heapEntry);
+                            break;
+                        }
+                    }
+                    minHeap.add(new AbstractMap.SimpleEntry<>(v, peso));
+                }
+            }
+        }
+        // Construir el árbol mínimo
+        GraphListaadyacencia<V> arbolMinimo = new GraphListaadyacencia<>();
+        for (Vertex<V> v : vertices) {arbolMinimo.agregarVertice(new Vertex<>(v.getDato()));}
+        for (Vertex<V> v : parent.keySet()) {
+            Vertex<V> p = parent.get(v);
+            if (p != null) {
+                int peso = 0;
+                for (Map.Entry<Vertex<V>, Integer> entry : p.getAdyacentes()) {
+                    if (entry.getKey().equals(v)) {
+                        peso = entry.getValue();
+                        break;
+                    }
+                }
+                arbolMinimo.agregarArista(arbolMinimo.getVertices().get(arbolMinimo.getVertices().indexOf(p)), arbolMinimo.getVertices().get(arbolMinimo.getVertices().indexOf(v)), peso);
+            }
+        }
+        return arbolMinimo;
     }
 }
