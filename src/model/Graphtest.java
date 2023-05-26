@@ -2,10 +2,8 @@ package model;
 
 import junit.framework.TestCase;
 import org.junit.jupiter.api.Test;
-import static org.junit.Assert.assertEquals;
 
 import java.util.Map;
-import java.util.Optional;
 
 public class Graphtest extends TestCase {
     private GraphListaadyacencia g= new GraphListaadyacencia();
@@ -269,9 +267,12 @@ public class Graphtest extends TestCase {
         g.agregarVertice(new Vertex<>("E"));
 
         g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(1), 2);
+        System.out.println(((Vertex<?>) g.getVertices().get(1)).getAdyacentes().get(0));
         g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(2), 4);
         g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(2), 1);
+        System.out.println(((Vertex<?>) g.getVertices().get(1)).getAdyacentes().get(1));
         g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(3), 3);
+        System.out.println(((Vertex<?>) g.getVertices().get(1)).getAdyacentes().get(2));
         g.agregarArista((Vertex) g.getVertices().get(2), (Vertex) g.getVertices().get(3), 5);
         g.agregarArista((Vertex) g.getVertices().get(2), (Vertex) g.getVertices().get(4), 6);
         g.agregarArista((Vertex) g.getVertices().get(3), (Vertex) g.getVertices().get(4), 2);
@@ -283,13 +284,15 @@ public class Graphtest extends TestCase {
         assertEquals("D", arbolMinimo.getVertices().get(3).getDato());
         assertEquals("E", arbolMinimo.getVertices().get(4).getDato());
 
-
-        Map.Entry<Vertex<String>, Integer> p1 = arbolMinimo.getVertices().get(1).getAdyacentes().get(2);
+        Map.Entry<Vertex<String>, Integer> p1 = arbolMinimo.getVertices().get(1).getAdyacentes().get(0);
         int p11 = p1.getValue();
-        Map.Entry<Vertex<String>, Integer> p2 = arbolMinimo.getVertices().get(1).getAdyacentes().get(0);
+        System.out.println(p11);
+        Map.Entry<Vertex<String>, Integer> p2 = arbolMinimo.getVertices().get(1).getAdyacentes().get(2);
         int p22 = p2.getValue();
-        Map.Entry<Vertex<String>, Integer> p3 = arbolMinimo.getVertices().get(1).getAdyacentes().get(0);
+        System.out.println(p22);
+        Map.Entry<Vertex<String>, Integer> p3 = arbolMinimo.getVertices().get(1).getAdyacentes().get(1);
         int p33 = p3.getValue();
+        System.out.println(p33);
         Map.Entry<Vertex<String>, Integer> p4 = arbolMinimo.getVertices().get(4).getAdyacentes().get(0);
         int p44 = p4.getValue();
         assertEquals(2, p11);
