@@ -2,7 +2,7 @@ package model;
 
 import java.util.*;
 
-public class GraphListaadyacencia<V> implements  Graph{
+public class GraphListaadyacencia<V> implements  Graph<V>{
     private ArrayList<Vertex<V>> vertices;
     private int time=0;
 
@@ -17,7 +17,7 @@ public class GraphListaadyacencia<V> implements  Graph{
     public  GraphListaadyacencia() {
         vertices = new ArrayList<>();
     }
-    public void agregarVertice(Vertex vertice) {
+    public void agregarVertice(Vertex<V> vertice) {
         if(vertices.contains(vertice)){
             return;
         }
@@ -25,8 +25,14 @@ public class GraphListaadyacencia<V> implements  Graph{
             vertices.add(vertice);
         }
     }
+
     @Override
-    public void agregarArista(Vertex origen, Vertex destino, int peso) {
+    public void deleteEdge() {
+
+    }
+
+    @Override
+    public void agregarArista(Vertex<V> origen, Vertex<V> destino, int peso) {
         if (origen != null && destino != null) {
             for (int i = 0; i < origen.getAdyacentes().size(); i++) {
                 Map.Entry<Vertex<V>, Integer> entry = (Map.Entry<Vertex<V>, Integer>) origen.getAdyacentes().get(i);
@@ -40,7 +46,7 @@ public class GraphListaadyacencia<V> implements  Graph{
         }
     }
     @Override
-    public void bfs(Vertex v) {
+    public void bfs(Vertex<V> v) {
         if(vertices.size()>0){
             v.setC(Colors.WHITE);
             v.setDistance(0);
@@ -52,7 +58,7 @@ public class GraphListaadyacencia<V> implements  Graph{
         //return msg;
     }
     private void bfsinner(Vertex<V> v) {
-        for (Vertex q: vertices) {
+        for (Vertex<V> q: vertices) {
             q.setDistance(0);
             q.setC(Colors.WHITE);
             q.setParent(null);
@@ -78,7 +84,7 @@ public class GraphListaadyacencia<V> implements  Graph{
     @Override
     public void dfs(){
         if(vertices.size()>0){
-            for (Vertex v:vertices) {
+            for (Vertex<V> v:vertices) {
                 v.setC(Colors.WHITE);
                 v.setParent(null);
             }
@@ -90,8 +96,6 @@ public class GraphListaadyacencia<V> implements  Graph{
             }
         }
     }
-
-
     private void dfs(Vertex<V> v,int t){
         time+=1;
         v.setDistance(t);
@@ -128,7 +132,8 @@ public class GraphListaadyacencia<V> implements  Graph{
         origen.getAdyacentes().remove(arista);
         return true;
     }
-    public boolean borrarVertice(Vertex<V> vertice) {
+    @Override
+    public boolean deleteVertex(Vertex<V> vertice) {
         if (vertice == null) {
             return false; // El vértice a eliminar es null, no se puede eliminar
         }
@@ -149,6 +154,17 @@ public class GraphListaadyacencia<V> implements  Graph{
         vertices.remove(vertice);
         return true;
     }
+
+    @Override
+    public ArrayList<Vertex<V>> Dijsktra(Vertex<V> start) {
+
+        start.setDistance(0);
+
+        PriorityQueue<Map.Entry<Vertex<V>, Integer>> minHeap = new PriorityQueue<>(Comparator.comparingInt(Map.Entry::getValue));
+
+        return null;
+    }
+
     public GraphListaadyacencia<V> prim() {
         if (vertices.size() == 0) {
             return null;
