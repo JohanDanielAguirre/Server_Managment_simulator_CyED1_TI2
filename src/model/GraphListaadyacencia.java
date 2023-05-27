@@ -158,7 +158,6 @@ public class GraphListaadyacencia<V> implements  Graph{
         PriorityQueue<Map.Entry<Vertex<V>, Integer>> minHeap = new PriorityQueue<>(Comparator.comparingInt(Map.Entry::getValue));
         Map<Vertex<V>, Integer> key = new HashMap<>();
         Map<Vertex<V>, Vertex<V>> parent = new HashMap<>();
-
         for (Vertex<V> v : vertices) {
             key.put(v, Integer.MAX_VALUE);
             parent.put(v, null);
