@@ -79,26 +79,14 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph{
         }
     }
 
-    private Vertex<V> findVertex(Vertex<V> value) {
-        for (Vertex<V> vertex : vertices) {
-            if (vertex.getDato().equals(value)) {
-                return vertex;
-            }
-        }
-        return null; // Vertex not found
-    }
-
     @Override
     public void bfs(Vertex v) {
         if (vertices.size() > 0) {
-            Vertex<V> startVertex = findVertex(v);
-            if (startVertex != null) {
-                for (V vertex : vertices) {
-                    vertex.setC(Colors.WHITE);
-                    vertex.setDistance(0);
-                    vertex.setParent(null);
-                }
-                bfsInner(startVertex);
+            for (V vertex : vertices) {
+                vertex.setC(Colors.WHITE);
+                vertex.setDistance(0);
+                vertex.setParent(null);
+                bfsInner(v);
             }
         }
     }
