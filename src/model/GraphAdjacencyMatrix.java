@@ -2,7 +2,7 @@ package model;
 
 import java.util.*;
 
-public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph{
+public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph<V>{
     private int numVertices;
     private int[][] adjacencyMatrix;
     private List<V> vertices;
@@ -26,8 +26,8 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph{
         }
     }
 
-
-    public void borrarVertice(V vertex) {
+    @Override
+    public boolean deleteVertex(Vertex<V> vertex) {
         int vertexIndex = vertices.indexOf(vertex);
         vertices.remove(vertexIndex);
         numVertices--;
@@ -48,6 +48,13 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph{
             }
         }
         adjacencyMatrix = newMatrix;
+
+        return true; //Hay que cambiar esto
+    }
+
+    @Override
+    public int[] Dijsktra(Vertex<V> start) {
+        return new int[0];
     }
 
     public void agregarArista(Vertex origen, Vertex destino, int peso) {
@@ -59,8 +66,8 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph{
             adjacencyMatrix[destinationIndex][sourceIndex] = peso;
         }
     }
-
-    public void borrarArista(V source, V destination) {
+    @Override
+    public void deleteEdge(Vertex<V> source, Vertex<V> destination) {
         int sourceIndex = vertices.indexOf(source);
         int destinationIndex = vertices.indexOf(destination);
 

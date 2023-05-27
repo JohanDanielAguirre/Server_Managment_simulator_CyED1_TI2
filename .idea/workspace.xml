@@ -7,11 +7,16 @@
     <list default="true" id="8df48a02-1b9e-42a9-bece-17c21ac52617" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 <<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/src/model/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/GraphListaadyacencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GraphListaadyacencia.java" afterDir="false" />
+=======
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/model/GraphAdjacencyMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GraphAdjacencyMatrix.java" afterDir="false" />
 =======
       <change beforePath="$PROJECT_DIR$/doc/~WRL0005.tmp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Graphtest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Graphtest.java" afterDir="false" />
 >>>>>>> ef2a565b4a5148c59691127151d4ec168f8b2fc9
+>>>>>>> 647a1371dd4791593ea7398594e16cdc6886b9fb
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +41,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="2Q6igNNd8CrUYXsGGBykK5ZGXwC" />
   <component name="ProjectViewState">
@@ -68,12 +76,17 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+<<<<<<< HEAD
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Usuario/OneDrive - Universidad Icesi (@icesi.edu.co)/Dicretas 1/Server_Managment_simulator_CyED1_TI2",
+=======
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "WebServerToolWindowFactoryState": "false",
     "dart.analysis.tool.window.visible": "false",
     "go.import.settings.migrated": "true",
     "last_opened_file_path": "D:/Usuarios/1110290182/codigo/Server_Managment_simulator_CyED1_TI2",
+>>>>>>> 647a1371dd4791593ea7398594e16cdc6886b9fb
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -81,7 +94,10 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
+<<<<<<< HEAD
+=======
     "ruby.rails.projectView.checked": "true",
+>>>>>>> 647a1371dd4791593ea7398594e16cdc6886b9fb
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -133,7 +149,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1684680541262</updated>
+<<<<<<< HEAD
+      <workItem from="1685219027831" duration="2987000" />
+=======
       <workItem from="1685218056453" duration="3196000" />
+>>>>>>> 647a1371dd4791593ea7398594e16cdc6886b9fb
     </task>
     <servers />
   </component>
