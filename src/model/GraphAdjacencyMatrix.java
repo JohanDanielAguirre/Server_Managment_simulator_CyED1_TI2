@@ -1,9 +1,8 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class GraphAdjacencyMatrix<V> {
+public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph{
     private int numVertices;
     private int[][] adjacencyMatrix;
     private List<V> vertices;
@@ -14,9 +13,9 @@ public class GraphAdjacencyMatrix<V> {
         this.vertices = new ArrayList<>();
     }
 
-    public void addVertex(V vertex) {
-        if (!vertices.contains(vertex)) {
-            vertices.add(vertex);
+    public void agregarVertice(Vertex vertice) {
+        if (!vertices.contains(vertice)) {
+            vertices.add((V) vertice);
             numVertices++;
 
             int[][] newMatrix = new int[numVertices][numVertices];
@@ -28,7 +27,7 @@ public class GraphAdjacencyMatrix<V> {
     }
 
 
-    public void removeVertex(V vertex) {
+    public void borrarVertice(V vertex) {
         int vertexIndex = vertices.indexOf(vertex);
         vertices.remove(vertexIndex);
         numVertices--;
@@ -51,17 +50,17 @@ public class GraphAdjacencyMatrix<V> {
         adjacencyMatrix = newMatrix;
     }
 
-    public void addEdge(V source, V destination, int weight) {
-        int sourceIndex = vertices.indexOf(source);
-        int destinationIndex = vertices.indexOf(destination);
+    public void agregarArista(Vertex origen, Vertex destino, int peso) {
+        int sourceIndex = vertices.indexOf(origen);
+        int destinationIndex = vertices.indexOf(destino);
 
         if (sourceIndex != -1 && destinationIndex != -1) {
-            adjacencyMatrix[sourceIndex][destinationIndex] = weight;
-            adjacencyMatrix[destinationIndex][sourceIndex] = weight;
+            adjacencyMatrix[sourceIndex][destinationIndex] = peso;
+            adjacencyMatrix[destinationIndex][sourceIndex] = peso;
         }
     }
 
-    public void removeEdge(V source, V destination) {
+    public void borrarArista(V source, V destination) {
         int sourceIndex = vertices.indexOf(source);
         int destinationIndex = vertices.indexOf(destination);
 
@@ -79,4 +78,166 @@ public class GraphAdjacencyMatrix<V> {
             System.out.println();
         }
     }
+
+    private Vertex<V> findVertex(Vertex<V> value) {
+        for (Vertex<V> vertex : vertices) {
+            if (vertex.getDato().equals(value)) {
+                return vertex;
+            }
+        }
+        return null; // Vertex not found
+    }
+
+    @Override
+    public void bfs(Vertex v) {
+        if (vertices.size() > 0) {
+            Vertex<V> startVertex = findVertex(v);
+            if (startVertex != null) {
+                for (V vertex : vertices) {
+                    vertex.setC(Colors.WHITE);
+                    vertex.setDistance(0);
+                    vertex.setParent(null);
+                }
+                bfsInner(startVertex);
+            }
+        }
+    }
+
+    private void bfsInner(Vertex<V> v) {
+        v.setC(Colors.GREY);
+        v.setDistance(0);
+        v.setParent(null);
+
+        Queue<Vertex<V>> queue = new LinkedList<>();
+        queue.add(v);
+
+        while (!queue.isEmpty()) {
+            Vertex<V> u = queue.poll();
+
+            for (int i = 0; i < numVertices; i++) {
+                if (adjacencyMatrix[vertices.indexOf(u)][i] != 0) {
+                    Vertex<V> adj = (Vertex<V>) vertices.get(i);
+
+                    if (adj.getC() == Colors.WHITE) {
+                        adj.setC(Colors.GREY);
+                        adj.setDistance(u.getDistance() + 1);
+                        adj.setParent(u);
+                        queue.add(adj);
+                    }
+                }
+            }
+
+            u.setC(Colors.BLACK);
+        }
+    }
+
+
+    @Override
+    public void dfs() {
+        if (vertices.size() > 0) {
+            for (Vertex<V> v : vertices) {
+                v.setC(Colors.WHITE);
+                v.setParent(null);
+            }
+            int time = 0;
+            for (Vertex<V> v : vertices) {
+                if (v.getC() == Colors.WHITE) {
+                    time = dfsInner(v, time);
+                }
+            }
+        }
+    }
+
+    private int dfsInner(Vertex<V> v, int time) {
+        time += 1;
+        v.setDistance(time);
+        v.setC(Colors.GREY);
+
+        for (int i = 0; i < numVertices; i++) {
+            if (adjacencyMatrix[vertices.indexOf(v)][i] != 0) {
+                Vertex<V> adj = (Vertex<V>) vertices.get(i);
+
+                if (adj.getC() == Colors.WHITE) {
+                    adj.setParent(v);
+                    time = dfsInner(adj, time);
+                }
+            }
+        }
+
+        v.setC(Colors.BLACK);
+        time += 1;
+        v.setDistancefinal(time);
+
+        return time;
+    }
+
+    public GraphAdjacencyMatrix<V> prim() {
+        if (vertices.size() == 0) {
+            return null;
+        }
+        // Estructuras auxiliares
+        Set<Vertex<V>> visited = new HashSet<>();
+        PriorityQueue<Map.Entry<Vertex<V>, Integer>> minHeap = new PriorityQueue<>(Comparator.comparingInt(Map.Entry::getValue));
+        Map<Vertex<V>, Integer> key = new HashMap<>();
+        Map<Vertex<V>, Vertex<V>> parent = new HashMap<>();
+
+        for (Vertex<V> v : vertices) {
+            key.put(v, Integer.MAX_VALUE);
+            parent.put(v, null);
+        }
+        Vertex<V> origen = vertices.get(0);
+        key.put(origen, 0);
+        minHeap.add(new AbstractMap.SimpleEntry<>(origen, 0));
+        while (!minHeap.isEmpty()) {
+            Vertex<V> u = minHeap.poll().getKey();
+            visited.add(u);
+
+            for (Map.Entry<Vertex<V>, Integer> entry : u.getAdyacentes()) {
+                Vertex<V> v = entry.getKey();
+                int peso = entry.getValue();
+
+                if (!visited.contains(v) && peso < key.get(v)) {
+                    key.put(v, peso);
+                    parent.put(v, u);
+
+                    // Actualizar el peso en el minHeap
+                    for (Map.Entry<Vertex<V>, Integer> heapEntry : minHeap) {
+                        if (heapEntry.getKey().equals(v)) {
+                            minHeap.remove(heapEntry);
+                            break;
+                        }
+                    }
+                    minHeap.add(new AbstractMap.SimpleEntry<>(v, peso));
+                }
+            }
+        }
+        // Construir el árbol mínimo
+        GraphAdjacencyMatrix<V> arbolMinimo = new GraphAdjacencyMatrix<>(minHeap.size());
+        Map<Vertex<V>, Vertex<V>> vertexMap = new HashMap<>();
+
+        for (Vertex<V> v : vertices) {
+            Vertex<V> newVertex = new Vertex<>(v.getDato());
+            arbolMinimo.agregarVertice(newVertex);
+            vertexMap.put(v, newVertex);
+        }
+
+        for (Vertex<V> v : parent.keySet()) {
+            Vertex<V> p = parent.get(v);
+            if (p != null) {
+                int peso = 0;
+                for (Map.Entry<Vertex<V>, Integer> entry : p.getAdyacentes()) {
+                    if (entry.getKey().equals(v)) {
+                        peso = entry.getValue();
+                        break;
+                    }
+                }
+                Vertex<V> newV = vertexMap.get(v);
+                Vertex<V> newP = vertexMap.get(p);
+                arbolMinimo.agregarArista(newP, newV, peso);
+            }
+        }
+
+        return arbolMinimo;
+    }
+
 }
