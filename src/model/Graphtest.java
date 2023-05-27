@@ -322,4 +322,109 @@ public class Graphtest extends TestCase {
         assertEquals(g.getVertices().get(4),path.get(1));
         assertEquals(g.getVertices().get(1),path.get(2));
     }
+    @Test
+    public void testPrimalldisconnect() {
+        stage4();
+        GraphListaadyacencia g1=g.prim();
+        assertEquals(1,g1.getVertices().size());
+        Vertex v=(Vertex) g1.getVertices().get(0);
+        assertEquals("Server1",v.getDato());
+    }
+    @Test
+    public void testPrimpartialdisconnect() {
+        stage2();
+        GraphListaadyacencia g1=g.prim();
+        assertEquals(3,g1.getVertices().size());
+        Vertex v=(Vertex) g1.getVertices().get(0);
+        assertEquals("Server1",v.getDato());
+        assertEquals(2,v.getAdyacentes().size());
+        v=(Vertex) g1.getVertices().get(1);
+        assertEquals("Server2",v.getDato());
+        assertEquals(1,v.getAdyacentes().size());
+        v=(Vertex) g1.getVertices().get(2);
+        assertEquals("Server3",v.getDato());
+        assertEquals(1,v.getAdyacentes().size());
+    }
+
+    @Test
+    public void testPrimnormal() {
+        stage3();
+        GraphListaadyacencia g1=g.prim();
+        assertEquals(5,g1.getVertices().size());
+        Vertex v=(Vertex) g1.getVertices().get(0);
+        assertEquals("Server1",v.getDato());
+        assertEquals(1,v.getAdyacentes().size());
+        v=(Vertex) g1.getVertices().get(1);
+        assertEquals("Server2",v.getDato());
+        assertEquals(1,v.getAdyacentes().size());
+        v=(Vertex) g1.getVertices().get(2);
+        assertEquals("Server3",v.getDato());
+        assertEquals(1,v.getAdyacentes().size());
+        v=(Vertex) g1.getVertices().get(3);
+        assertEquals("Server4",v.getDato());
+        assertEquals(1,v.getAdyacentes().size());
+        v=(Vertex) g1.getVertices().get(4);
+        assertEquals("Server5",v.getDato());
+        assertEquals(2,v.getAdyacentes().size());
+    }
+
+    @Test
+    public void testkruskalalldisconnect() {
+        stage4();
+        GraphListaadyacencia g1=g.kruskal();
+        assertEquals(5,g1.getVertices().size());
+        Vertex v=(Vertex) g1.getVertices().get(0);
+        assertEquals("Server1",v.getDato());
+        v=(Vertex) g1.getVertices().get(1);
+        assertEquals("Server2",v.getDato());
+        v=(Vertex) g1.getVertices().get(2);
+        assertEquals("Server3",v.getDato());
+        v=(Vertex) g1.getVertices().get(3);
+        assertEquals("Server4",v.getDato());
+        v=(Vertex) g1.getVertices().get(4);
+        assertEquals("Server5",v.getDato());
+    }
+    @Test
+    public void testkruskaltialdisconnect() {
+        stage2();
+        GraphListaadyacencia g1=g.kruskal();
+        assertEquals(3,g1.getVertices().size());
+        Vertex v=(Vertex) g1.getVertices().get(0);
+        assertEquals("Server1",v.getDato());
+        assertEquals(2,v.getAdyacentes().size());
+        v=(Vertex) g1.getVertices().get(1);
+        assertEquals("Server2",v.getDato());
+        assertEquals(1,v.getAdyacentes().size());
+        v=(Vertex) g1.getVertices().get(2);
+        assertEquals("Server3",v.getDato());
+        assertEquals(1,v.getAdyacentes().size());
+        v=(Vertex) g1.getVertices().get(3);
+        assertEquals("Server4",v.getDato());
+        assertEquals(1,v.getAdyacentes().size());
+        v=(Vertex) g1.getVertices().get(4);
+        assertEquals("Server5",v.getDato());
+        assertEquals(1,v.getAdyacentes().size());
+    }
+
+    @Test
+    public void testKruskalnormal() {
+        stage3();
+        GraphListaadyacencia g1=g.kruskal();
+        assertEquals(5,g1.getVertices().size());
+        Vertex v=(Vertex) g1.getVertices().get(0);
+        assertEquals("Server1",v.getDato());
+        assertEquals(1,v.getAdyacentes().size());
+        v=(Vertex) g1.getVertices().get(1);
+        assertEquals("Server2",v.getDato());
+        assertEquals(1,v.getAdyacentes().size());
+        v=(Vertex) g1.getVertices().get(2);
+        assertEquals("Server3",v.getDato());
+        assertEquals(1,v.getAdyacentes().size());
+        v=(Vertex) g1.getVertices().get(3);
+        assertEquals("Server4",v.getDato());
+        assertEquals(1,v.getAdyacentes().size());
+        v=(Vertex) g1.getVertices().get(4);
+        assertEquals("Server5",v.getDato());
+        assertEquals(2,v.getAdyacentes().size());
+    }
 }
