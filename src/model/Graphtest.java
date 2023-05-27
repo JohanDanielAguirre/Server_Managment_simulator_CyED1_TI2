@@ -275,7 +275,51 @@ public class Graphtest extends TestCase {
     @Test
     public void testdijkstranormal() {
         stage3();
-        ArrayList <Vertex> path=g.dijkstra((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(3));
+        ArrayList <Vertex> path=g.dijkstra((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(4));
+        assertEquals(3,path.size());
+        assertEquals(g.getVertices().get(0),path.get(0));
+        assertEquals(g.getVertices().get(1),path.get(1));
+        assertEquals(g.getVertices().get(4),path.get(2));
+    }
+    @Test
+    public void testdijkstranormal2() {
+        stage3();
+        ArrayList <Vertex> path=g.dijkstra((Vertex) g.getVertices().get(3),(Vertex) g.getVertices().get(1));
+        assertEquals(3,path.size());
+        assertEquals(g.getVertices().get(3),path.get(0));
+        assertEquals(g.getVertices().get(4),path.get(1));
+        assertEquals(g.getVertices().get(1),path.get(2));
+    }
+
+    @Test
+    public void testFloydalldisconnected() {
+        stage4();
+        ArrayList <Vertex> path=g.floyd((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(1));
         assertEquals(0,path.size());
+    }
+
+    @Test
+    public void testFloydpartialydisconnected2() {
+        stage2();
+        ArrayList <Vertex> path=g.floyd((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(3));
+        assertEquals(0,path.size());
+    }
+    @Test
+    public void testFloydnormal() {
+        stage3();
+        ArrayList <Vertex> path=g.floyd((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(4));
+        assertEquals(3,path.size());
+        assertEquals(g.getVertices().get(0),path.get(0));
+        assertEquals(g.getVertices().get(1),path.get(1));
+        assertEquals(g.getVertices().get(4),path.get(2));
+    }
+    @Test
+    public void testFloydnormal2() {
+        stage3();
+        ArrayList <Vertex> path=g.floyd((Vertex) g.getVertices().get(3),(Vertex) g.getVertices().get(1));
+        assertEquals(3,path.size());
+        assertEquals(g.getVertices().get(3),path.get(0));
+        assertEquals(g.getVertices().get(4),path.get(1));
+        assertEquals(g.getVertices().get(1),path.get(2));
     }
 }
