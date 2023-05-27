@@ -27,7 +27,7 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
     }
 
     @Override
-    public void deleteEdge() {
+    public void deleteEdge(Vertex<V> source, Vertex<V> destination) {
 
     }
 
@@ -35,7 +35,7 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
     public void agregarArista(Vertex<V> origen, Vertex<V> destino, int peso) {
         if (origen != null && destino != null) {
             for (int i = 0; i < origen.getAdyacentes().size(); i++) {
-                Map.Entry<Vertex<V>, Integer> entry = (Map.Entry<Vertex<V>, Integer>) origen.getAdyacentes().get(i);
+                Map.Entry<Vertex<V>,Integer> entry = (Map.Entry<Vertex<V>,Integer>) origen.getAdyacentes().get(i);
                 Vertex<V> v = entry.getKey();
                 if (v.equals(destino)) {
                     return;
@@ -68,7 +68,7 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
         queue.add(v);
         while (!queue.isEmpty()) {
             Vertex<V> u = queue.poll();
-            for (Map.Entry<Vertex<V>, Integer> entry : u.getAdyacentes()) {
+            for (Map.Entry<Vertex<V>,Integer> entry : u.getAdyacentes()) {
                 Vertex<V> adj = entry.getKey();
                 if (adj.getC() == Colors.WHITE) {
                     adj.setC(Colors.GREY);
@@ -100,7 +100,7 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
         time+=1;
         v.setDistance(t);
         v.setC(Colors.GREY);
-        for (Map.Entry<Vertex<V>, Integer> u : v.getAdyacentes()) {
+        for (Map.Entry<Vertex<V>,Integer> u : v.getAdyacentes()) {
             if (u.getKey().getC()==Colors.WHITE) {
                 u.getKey().setParent(v);
                 dfs(u.getKey(),t);
@@ -117,8 +117,8 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
             return false;
         }
         // Buscar la arista en el vértice de origen
-        Map.Entry<Vertex<V>, Integer> arista = null;
-        for (Map.Entry<Vertex<V>, Integer> entry : origen.getAdyacentes()) {
+        Map.Entry<Vertex<V>,Integer> arista = null;
+        for (Map.Entry<Vertex<V>,Integer> entry : origen.getAdyacentes()) {
             if (entry.getKey().equals(destino)) {
                 arista = entry;
                 break;
@@ -142,9 +142,9 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
         }
         // Eliminar todas las aristas que tienen como destino el vértice a eliminar
         for (Vertex<V> v : vertices) {
-            Iterator<Map.Entry<Vertex<V>, Integer>> iterator = v.getAdyacentes().iterator();
+            Iterator<Map.Entry<Vertex<V>,Integer>> iterator = v.getAdyacentes().iterator();
             while (iterator.hasNext()) {
-                Map.Entry<Vertex<V>, Integer> entry = iterator.next();
+                Map.Entry<Vertex<V>,Integer> entry = iterator.next();
                 if (entry.getKey().equals(vertice)) {
                     iterator.remove();
                 }
@@ -156,12 +156,38 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
     }
 
     @Override
-    public ArrayList<Vertex<V>> Dijsktra(Vertex<V> start) {
+    public int[] Dijsktra(Vertex<V> start) {
 
-        start.setDistance(0);
+        start.setDistance(0);//Utilizo la variable distance
+        //Cree una clase tupla para no utilizar el map, pero si quieres cambialo
+        PriorityQueue<Tuple<V>> minHeap = new PriorityQueue<>(Comparator.comparingInt(Tuple::getDistance));
+        //Seteo las distancias, previos y los añados a la queue
+        for (Vertex<V> v:
+             vertices) {
 
-        PriorityQueue<Map.Entry<Vertex<V>, Integer>> minHeap = new PriorityQueue<>(Comparator.comparingInt(Map.Entry::getValue));
+            if (v!=start){
+                v.setDistance(Integer.MAX_VALUE);
+            }
+            v.setParent(null);
+            minHeap.add(new Tuple<>(v,v.getDistance()));
 
+        }
+        //Se supone que aqui se encuentra el camino minimo, es basicamente casi lo mismo que prim
+        while (!minHeap.isEmpty()){
+            Vertex<V> u = minHeap.poll().getVertex();
+            for (Map.Entry<Vertex<V>,Integer> v :
+                    u.getAdyacentes()) {
+                int dist = u.getDistance() + v.getValue();
+                if(dist < v.getValue()){
+                    v.getKey().setDistance(dist);
+                    v.getKey().setParent(u);
+                    //Aqui iria el decrease
+                }
+            }
+        }
+
+
+        //No se que retornar
         return null;
     }
 
@@ -185,7 +211,7 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
             Vertex<V> u = minHeap.poll().getKey();
             visited.add(u);
 
-            for (Map.Entry<Vertex<V>, Integer> entry : u.getAdyacentes()) {
+            for (Map.Entry<Vertex<V>,Integer> entry : u.getAdyacentes()) {
                 Vertex<V> v = entry.getKey();
                 int peso = entry.getValue();
 
@@ -218,7 +244,7 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
             Vertex<V> p = parent.get(v);
             if (p != null) {
                 int peso = 0;
-                for (Map.Entry<Vertex<V>, Integer> entry : p.getAdyacentes()) {
+                for (Map.Entry<Vertex<V>,Integer> entry : p.getAdyacentes()) {
                     if (entry.getKey().equals(v)) {
                         peso = entry.getValue();
                         break;
@@ -232,4 +258,8 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
 
         return arbolMinimo;
     }
+
+
+
+
 }
