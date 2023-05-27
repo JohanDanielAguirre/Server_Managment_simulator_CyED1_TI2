@@ -2,56 +2,56 @@ package model;
 
 import junit.framework.TestCase;
 import org.junit.jupiter.api.Test;
-
+import java.util.ArrayList;
 import java.util.Map;
 
 public class Graphtest extends TestCase {
     private GraphListaadyacencia g= new GraphListaadyacencia();
     public void stage1(){
-        g.agregarVertice(new Vertex("bonafon"));
-        g.agregarVertice(new Vertex<>("obras termo"));
-        g.agregarVertice(new Vertex("albañiles unidos"));
-        g.agregarVertice(new Vertex<>("buses incorporados"));
-        g.agregarVertice(new Vertex("Kantiano"));
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(1),0);
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(2),0);
-        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(3),0);
-        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(2),0);
-        g.agregarArista((Vertex) g.getVertices().get(2), (Vertex) g.getVertices().get(4),0);
+        g.agregarVertice(new Vertex("Server1"));
+        g.agregarVertice(new Vertex<>("Server2"));
+        g.agregarVertice(new Vertex("Server3"));
+        g.agregarVertice(new Vertex<>("Server4"));
+        g.agregarVertice(new Vertex("Server5"));
+        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(1),2);
+        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(2),4);
+        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(3),3);
+        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(2),6);
+        g.agregarArista((Vertex) g.getVertices().get(2), (Vertex) g.getVertices().get(4),2);
     }
     public void stage2(){
-        g.agregarVertice(new Vertex("bonafon"));
-        g.agregarVertice(new Vertex("obras termo"));
-        g.agregarVertice(new Vertex("albañiles unidos"));
-        g.agregarVertice(new Vertex("buses incorporados"));
-        g.agregarVertice(new Vertex("Kantiano"));
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(1),0);
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(2),0);
-        g.agregarArista((Vertex) g.getVertices().get(3), (Vertex) g.getVertices().get(4),0);
+        g.agregarVertice(new Vertex("Server1"));
+        g.agregarVertice(new Vertex("Server2"));
+        g.agregarVertice(new Vertex("Server3"));
+        g.agregarVertice(new Vertex("Server4"));
+        g.agregarVertice(new Vertex("Server5"));
+        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(1),3);
+        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(2),7);
+        g.agregarArista((Vertex) g.getVertices().get(3), (Vertex) g.getVertices().get(4),6);
     }
     public void stage3(){
-        g.agregarVertice(new Vertex("bonafon"));
-        g.agregarVertice(new Vertex("obras termo"));
-        g.agregarVertice(new Vertex("albañiles unidos"));
+        g.agregarVertice(new Vertex("Server1"));
+        g.agregarVertice(new Vertex("Server2"));
+        g.agregarVertice(new Vertex("Server3"));
         g.agregarVertice(new Vertex("buses incorporados"));
         g.agregarVertice(new Vertex("Kantiano"));
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(1),0);
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(2),0);
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(3),0);
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(4),0);
-        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(2),0);
-        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(3),0);
-        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(4),0);
-        g.agregarArista((Vertex) g.getVertices().get(2), (Vertex) g.getVertices().get(3),0);
-        g.agregarArista((Vertex) g.getVertices().get(2), (Vertex) g.getVertices().get(4),0);
-        g.agregarArista((Vertex) g.getVertices().get(3), (Vertex) g.getVertices().get(4),0);
+        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(1),3);
+        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(2),7);
+        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(3),4);
+        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(4),3);
+        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(2),9);
+        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(3),4);
+        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(4),1);
+        g.agregarArista((Vertex) g.getVertices().get(2), (Vertex) g.getVertices().get(3),5);
+        g.agregarArista((Vertex) g.getVertices().get(2), (Vertex) g.getVertices().get(4),3);
+        g.agregarArista((Vertex) g.getVertices().get(3), (Vertex) g.getVertices().get(4),2);
     }
     public void stage4(){
-        g.agregarVertice(new Vertex("bonafon"));
-        g.agregarVertice(new Vertex("obras termo"));
-        g.agregarVertice(new Vertex("albañiles unidos"));
-        g.agregarVertice(new Vertex("buses incorporados"));
-        g.agregarVertice(new Vertex("Kantiano"));
+        g.agregarVertice(new Vertex("Server1"));
+        g.agregarVertice(new Vertex("Server2"));
+        g.agregarVertice(new Vertex("Server3"));
+        g.agregarVertice(new Vertex("Server4"));
+        g.agregarVertice(new Vertex("Server5"));
     }
     @Test
     public void testbfsalldisconnect(){
@@ -214,11 +214,11 @@ public class Graphtest extends TestCase {
     }
     @Test
     public void testAddVertexnormal() {
-        Vertex v=new Vertex("1");
+        Vertex v=new Vertex("Server1");
         g.agregarVertice(v);
-        v=new Vertex("perro");
+        v=new Vertex("Servermaster");
         g.agregarVertice(v);
-        v=new Vertex("1.1102.992.004");
+        v=new Vertex("Server3");
         g.agregarVertice(v);
         assertEquals(3,g.getVertices().size());
     }
@@ -230,15 +230,15 @@ public class Graphtest extends TestCase {
 
     @Test
     public void testAddedgenull() {
-        g.agregarVertice(new  Vertex("si"));
+        g.agregarVertice(new  Vertex("ServerCicle"));
         g.agregarArista((Vertex) g.getVertices().get(0),null,0);
         Vertex v=(Vertex) g.getVertices().get(0);
         assertEquals(0,v.getAdyacentes().size());
     }
     @Test
     public void testAddsameedge() {
-        g.agregarVertice(new  Vertex("si"));
-        g.agregarVertice(new  Vertex("no"));
+        g.agregarVertice(new  Vertex("Servermid"));
+        g.agregarVertice(new  Vertex("Servernonfunctional"));
         g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(1),0);
         g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(1),0);
         Vertex v=(Vertex) g.getVertices().get(0);
@@ -246,11 +246,11 @@ public class Graphtest extends TestCase {
     }
     @Test
     public void testAddedgesnormal() {
-        g.agregarVertice(new  Vertex("si"));
-        g.agregarVertice(new  Vertex("no"));
-        g.agregarVertice(new  Vertex("talvez"));
-        g.agregarVertice(new  Vertex("depende"));
-        g.agregarVertice(new  Vertex("devezencuando"));
+        g.agregarVertice(new  Vertex("Servermid"));
+        g.agregarVertice(new  Vertex("Servernonfunctional"));
+        g.agregarVertice(new  Vertex("Servernonfunctional2"));
+        g.agregarVertice(new  Vertex("Servernonfunctional3"));
+        g.agregarVertice(new  Vertex("Servernonfunctional4"));
         g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(1),0);
         g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(2),0);
         g.agregarArista((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(3),0);
@@ -258,47 +258,24 @@ public class Graphtest extends TestCase {
         Vertex v=(Vertex) g.getVertices().get(0);
         assertEquals(4,v.getAdyacentes().size());
     }
+
     @Test
-    public void testPrim(){
-        g.agregarVertice(new Vertex<>("A"));
-        g.agregarVertice(new Vertex<>("B"));
-        g.agregarVertice(new Vertex<>("C"));
-        g.agregarVertice(new Vertex<>("D"));
-        g.agregarVertice(new Vertex<>("E"));
+    public void testdijkstraalldisconnected() {
+        stage4();
+        ArrayList <Vertex> path=g.dijkstra((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(1));
+        assertEquals(0,path.size());
+    }
 
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(1), 2);
-        System.out.println(((Vertex<?>) g.getVertices().get(1)).getAdyacentes().get(0));
-        g.agregarArista((Vertex) g.getVertices().get(0), (Vertex) g.getVertices().get(2), 4);
-        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(2), 1);
-        System.out.println(((Vertex<?>) g.getVertices().get(1)).getAdyacentes().get(1));
-        g.agregarArista((Vertex) g.getVertices().get(1), (Vertex) g.getVertices().get(3), 3);
-        System.out.println(((Vertex<?>) g.getVertices().get(1)).getAdyacentes().get(2));
-        g.agregarArista((Vertex) g.getVertices().get(2), (Vertex) g.getVertices().get(3), 5);
-        g.agregarArista((Vertex) g.getVertices().get(2), (Vertex) g.getVertices().get(4), 6);
-        g.agregarArista((Vertex) g.getVertices().get(3), (Vertex) g.getVertices().get(4), 2);
-
-        GraphListaadyacencia<String> arbolMinimo = g.prim();
-        assertEquals("A", arbolMinimo.getVertices().get(0).getDato());
-        assertEquals("B", arbolMinimo.getVertices().get(1).getDato());
-        assertEquals("C", arbolMinimo.getVertices().get(2).getDato());
-        assertEquals("D", arbolMinimo.getVertices().get(3).getDato());
-        assertEquals("E", arbolMinimo.getVertices().get(4).getDato());
-
-        Map.Entry<Vertex<String>, Integer> p1 = arbolMinimo.getVertices().get(1).getAdyacentes().get(0);
-        int p11 = p1.getValue();
-        System.out.println(p11);
-        Map.Entry<Vertex<String>, Integer> p2 = arbolMinimo.getVertices().get(1).getAdyacentes().get(2);
-        int p22 = p2.getValue();
-        System.out.println(p22);
-        Map.Entry<Vertex<String>, Integer> p3 = arbolMinimo.getVertices().get(1).getAdyacentes().get(1);
-        int p33 = p3.getValue();
-        System.out.println(p33);
-        Map.Entry<Vertex<String>, Integer> p4 = arbolMinimo.getVertices().get(4).getAdyacentes().get(0);
-        int p44 = p4.getValue();
-        assertEquals(2, p11);
-        assertEquals(1, p22);
-        assertEquals(3, p33);
-        assertEquals(2, p44);
-
+    @Test
+    public void testdijkstrapartialydisconnected2() {
+        stage2();
+        ArrayList <Vertex> path=g.dijkstra((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(3));
+        assertEquals(0,path.size());
+    }
+    @Test
+    public void testdijkstranormal() {
+        stage3();
+        ArrayList <Vertex> path=g.dijkstra((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(3));
+        assertEquals(0,path.size());
     }
 }
