@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8df48a02-1b9e-42a9-bece-17c21ac52617" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server_Managment_simulator_CyED1_TI2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Server_Managment_simulator_CyED1_TI2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Graph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/GraphListaadyacencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GraphListaadyacencia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Graphtest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Graphtest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/GraphAdjacencyMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GraphAdjacencyMatrix.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,20 +28,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/juans/IdeaProjects/SEM 3/Integradoras/Server_Managment_simulator_CyED1_TI2",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/juans/IdeaProjects/SEM 3/Integradoras/Server_Managment_simulator_CyED1_TI2&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Graphtest.testPrim" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Server_Managment_simulator_CyED1_TI2" />
