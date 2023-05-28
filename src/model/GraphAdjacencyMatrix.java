@@ -53,6 +53,11 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph<V>{
     }
 
     @Override
+    public ArrayList<Vertex<V>> Dijsktra(Vertex<V> start, Vertex<V> end) {
+        return null;
+    }
+
+
     public int[] Dijsktra(Vertex<V> start) {
         return new int[0];
     }
