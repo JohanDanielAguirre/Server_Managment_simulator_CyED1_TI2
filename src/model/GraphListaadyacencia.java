@@ -197,34 +197,27 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
         Map<Vertex<V>, Integer> distances = new HashMap<>();  // Stores the shortest distances from the source vertex
         Map<Vertex<V>, Vertex<V>> parents = new HashMap<>();  // Stores the previous vertex in the shortest path
         Set<Vertex<V>> visited = new HashSet<>();  // Set of visited vertices
-
         // Initialize distances with infinity for all vertices except the source
         for (Vertex<V> vertex : vertices) {
             distances.put(vertex, Integer.MAX_VALUE);
         }
         distances.put(source, 0);
-
         // Create a minimum priority queue to store vertices based on their distances
         PriorityQueue<Vertex<V>> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(distances::get));
         priorityQueue.add(source);
-
         // Perform Dijkstra's algorithm
         while (!priorityQueue.isEmpty()) {
             // Get the vertex with the minimum distance
             Vertex<V> minVertex = priorityQueue.poll();
-
             if (minVertex.equals(objective)) {
                 break;  // Stop the algorithm if the objective vertex is reached
             }
-
             // Mark the current vertex as visited
             visited.add(minVertex);
-
             // Update distances and parents for adjacent vertices
             for (Map.Entry<Vertex<V>, Integer> entry : minVertex.getAdyacentes()) {
                 Vertex<V> adjacentVertex = entry.getKey();
                 int edgeWeight = entry.getValue();
-
                 if (!visited.contains(adjacentVertex)) {
                     int newDistance = distances.get(minVertex) + edgeWeight;
                     if (newDistance < distances.get(adjacentVertex)) {
@@ -235,19 +228,15 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
                 }
             }
         }
-
         // Construct the shortest path
         ArrayList<Vertex<V>> shortestPath = new ArrayList<>();
         Vertex<V> currentVertex = objective;
-
         // Build the path by backtracking through parents
         while (currentVertex != null) {
             shortestPath.add(0, currentVertex);
             currentVertex = parents.get(currentVertex);
         }
-
         return shortestPath;
-
     }
 
     public GraphListaadyacencia<V> prim() {
