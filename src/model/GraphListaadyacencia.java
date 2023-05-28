@@ -388,4 +388,40 @@ public class GraphListaadyacencia<V extends Vertex<V>> implements  Graph<V>{
         // Return the minimum spanning tree graph
         return minimumSpanningTree;
     }
+
+    public double[][] floydL() {
+        int v = vertices.size();
+        double[][] distances = new double[v][v];
+        // Initialize distances with infinity for all pairs of vertices
+        for (int i = 0; i < v; i++) {
+            for (int j = 0; j < v; j++) {
+                distances[i][j] = Double.POSITIVE_INFINITY;
+            }
+        }
+        // Set distance 0 for self-loops
+        for (int i = 0; i < v; i++) {
+            distances[i][i] = 0;
+        }
+        // Set initial distances for existing edges
+        for (int i = 0; i < v; i++) {
+            Vertex<V> vertex = vertices.get(i);
+            for (Map.Entry<Vertex<V>, Integer> entry : vertex.getAdyacentes()) {
+                Vertex<V> adj = entry.getKey();
+                int weight = entry.getValue();
+                int adjIndex = vertices.indexOf(adj);
+                distances[i][adjIndex] = weight;
+            }
+        }
+        // Perform Floyd-Warshall algorithm
+        for (int k = 0; k < v; k++) {
+            for (int i = 0; i < v; i++) {
+                for (int j = 0; j < v; j++) {
+                    if (distances[i][k] + distances[k][j] < distances[i][j]) {
+                        distances[i][j] = distances[i][k] + distances[k][j];
+                    }
+                }
+            }
+        }
+        return distances;
+    }
 }

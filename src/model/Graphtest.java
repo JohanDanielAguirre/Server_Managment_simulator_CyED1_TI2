@@ -569,63 +569,108 @@ public class Graphtest extends TestCase {
     @Test
     public void testFloydalldisconnectedlist() {
         stage4();
-        ArrayList <Vertex> path=g.floyd((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(1));
-        assertEquals(0,path.size());
+        double[][] matrix=g.floydL();;
+        assertEquals(0.0,matrix[0][0]);
+        assertEquals(Double.POSITIVE_INFINITY,matrix[0][1]);
+        assertEquals(Double.POSITIVE_INFINITY,matrix[0][2]);
+        assertEquals(Double.POSITIVE_INFINITY,matrix[0][3]);
+        assertEquals(Double.POSITIVE_INFINITY,matrix[0][4]);
+
     }
     @Test
     public void testFloydalldisconnectedmatrix() {
         stage4();
-        ArrayList <Vertex> path=g1.floyd((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(1));
-        assertEquals(0,path.size());
+        double[][] matrix=g1.floydM();;
+        assertEquals(0.0,matrix[0][0]);
+        assertEquals(Double.POSITIVE_INFINITY,matrix[0][1]);
+        assertEquals(Double.POSITIVE_INFINITY,matrix[0][2]);
+        assertEquals(Double.POSITIVE_INFINITY,matrix[0][3]);
+        assertEquals(Double.POSITIVE_INFINITY,matrix[0][4]);
+
     }
 
     @Test
     public void testFloydpartialydisconnected2list() {
         stage2();
-        ArrayList <Vertex> path=g.floyd((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(3));
-        assertEquals(0,path.size());
+        double[][] matrix=g.floydL();;
+        assertEquals(0.0,matrix[0][0]);
+        assertEquals(Double.POSITIVE_INFINITY,matrix[0][4]);
+        assertEquals(Double.POSITIVE_INFINITY,matrix[0][3]);
+        assertEquals(Double.POSITIVE_INFINITY,matrix[1][3]);
+        assertEquals(Double.POSITIVE_INFINITY,matrix[1][4]);
+
     }
     @Test
     public void testFloydpartialydisconnected2matrix() {
         stage2();
-        ArrayList <Vertex> path=g1.floyd((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(3));
-        assertEquals(0,path.size());
+        double[][] matrix=g1.floydM();;
+        assertEquals(0.0,matrix[0][0]);
+        assertEquals(Double.POSITIVE_INFINITY,matrix[0][4]);
+        assertEquals(Double.POSITIVE_INFINITY,matrix[0][3]);
+        assertEquals(Double.POSITIVE_INFINITY,matrix[1][3]);
+        assertEquals(Double.POSITIVE_INFINITY,matrix[1][4]);
+
     }
     @Test
     public void testFloydnormallist() {
         stage3();
-        ArrayList <Vertex> path=g.floyd((Vertex) g.getVertices().get(0),(Vertex) g.getVertices().get(4));
-        assertEquals(3,path.size());
-        assertEquals(g.getVertices().get(0),path.get(0));
-        assertEquals(g.getVertices().get(1),path.get(1));
-        assertEquals(g.getVertices().get(4),path.get(2));
+        double[][] matrix=g.floydL();;
+        assertEquals(0.0,matrix[0][0]);
+        assertEquals(0.0,matrix[1][1]);
+        assertEquals(0.0,matrix[2][2]);
+        assertEquals(0.0,matrix[3][3]);
+        assertEquals(0.0,matrix[4][4]);
+        assertEquals(3.0,matrix[0][1]);
+        assertEquals(7.0,matrix[0][2]);
+        assertEquals(4.0,matrix[0][3]);
+        assertEquals(3.0,matrix[0][4]);
+        assertEquals(3.0,matrix[1][0]);
+        assertEquals(9.0,matrix[1][2]);
+        assertEquals(4.0,matrix[1][3]);
+        assertEquals(1.0,matrix[1][4]);
+        assertEquals(7.0,matrix[2][0]);
+        assertEquals(9.0,matrix[2][1]);
+        assertEquals(5.0,matrix[2][3]);
+        assertEquals(3.0,matrix[2][4]);
+        assertEquals(4.0,matrix[3][0]);
+        assertEquals(4.0,matrix[3][1]);
+        assertEquals(5.0,matrix[3][2]);
+        assertEquals(2.0,matrix[3][4]);
+        assertEquals(3.0,matrix[4][0]);
+        assertEquals(1.0,matrix[4][1]);
+        assertEquals(3.0,matrix[4][2]);
+        assertEquals(2.0,matrix[4][3]);
     }
     @Test
     public void testFloydnormalmatrix() {
         stage3();
-        ArrayList <Vertex> path=g1.floyd((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(4));
-        assertEquals(3,path.size());
-        assertEquals(g1.getVertices().get(0),path.get(0));
-        assertEquals(g1.getVertices().get(1),path.get(1));
-        assertEquals(g1.getVertices().get(4),path.get(2));
-    }
-    @Test
-    public void testFloydnormal2list() {
-        stage3();
-        ArrayList <Vertex> path=g.floyd((Vertex) g.getVertices().get(3),(Vertex) g.getVertices().get(1));
-        assertEquals(3,path.size());
-        assertEquals(g.getVertices().get(3),path.get(0));
-        assertEquals(g.getVertices().get(4),path.get(1));
-        assertEquals(g.getVertices().get(1),path.get(2));
-    }
-    @Test
-    public void testFloydnormal2matrix() {
-        stage3();
-        ArrayList <Vertex> path=g1.floyd((Vertex) g1.getVertices().get(3),(Vertex) g1.getVertices().get(1));
-        assertEquals(3,path.size());
-        assertEquals(g1.getVertices().get(3),path.get(0));
-        assertEquals(g1.getVertices().get(4),path.get(1));
-        assertEquals(g1.getVertices().get(1),path.get(2));
+        double[][] matrix=g1.floydM();;
+        assertEquals(0.0,matrix[0][0]);
+        assertEquals(0.0,matrix[1][1]);
+        assertEquals(0.0,matrix[2][2]);
+        assertEquals(0.0,matrix[3][3]);
+        assertEquals(0.0,matrix[4][4]);
+        assertEquals(3.0,matrix[0][1]);
+        assertEquals(7.0,matrix[0][2]);
+        assertEquals(4.0,matrix[0][3]);
+        assertEquals(3.0,matrix[0][4]);
+        assertEquals(3.0,matrix[1][0]);
+        assertEquals(9.0,matrix[1][2]);
+        assertEquals(4.0,matrix[1][3]);
+        assertEquals(1.0,matrix[1][4]);
+        assertEquals(7.0,matrix[2][0]);
+        assertEquals(9.0,matrix[2][1]);
+        assertEquals(5.0,matrix[2][3]);
+        assertEquals(3.0,matrix[2][4]);
+        assertEquals(4.0,matrix[3][0]);
+        assertEquals(4.0,matrix[3][1]);
+        assertEquals(5.0,matrix[3][2]);
+        assertEquals(2.0,matrix[3][4]);
+        assertEquals(3.0,matrix[4][0]);
+        assertEquals(1.0,matrix[4][1]);
+        assertEquals(3.0,matrix[4][2]);
+        assertEquals(2.0,matrix[4][3]);
+
     }
     @Test
     public void testPrimalldisconnectlist() {
