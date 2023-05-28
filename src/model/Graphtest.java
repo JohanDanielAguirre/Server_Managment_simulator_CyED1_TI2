@@ -333,7 +333,7 @@ public class Graphtest extends TestCase {
     @Test
     public void testPrimpartialdisconnect() {
         stage2();
-        GraphListaadyacencia g1=g.prim();
+        GraphListaadyacencia g1=g.primL();
         assertEquals(3,g1.getVertices().size());
         Vertex v=(Vertex) g1.getVertices().get(0);
         assertEquals("Server1",v.getDato());
@@ -349,7 +349,7 @@ public class Graphtest extends TestCase {
     @Test
     public void testPrimnormal() {
         stage3();
-        GraphListaadyacencia g1=g.prim();
+        GraphListaadyacencia g1=g.primL();
         assertEquals(5,g1.getVertices().size());
         Vertex v=(Vertex) g1.getVertices().get(0);
         assertEquals("Server1",v.getDato());
