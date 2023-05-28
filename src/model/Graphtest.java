@@ -325,7 +325,7 @@ public class Graphtest extends TestCase {
     @Test
     public void testPrimalldisconnect() {
         stage4();
-        GraphListaadyacencia g1=g.prim();
+        GraphListaadyacencia g1=g.primL();
         assertEquals(1,g1.getVertices().size());
         Vertex v=(Vertex) g1.getVertices().get(0);
         assertEquals("Server1",v.getDato());

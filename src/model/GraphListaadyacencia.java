@@ -234,6 +234,27 @@ public class GraphListaadyacencia<V extends Vertex<V>> implements  Graph<V>{
         return shortestPath;
     }
 
+    public double[][] floyd_Warshall(){
+        int v = vertices.size();
+
+        double[][] distances = new double[v][v];
+
+        for (int i = 0; i < v; i++) {
+            for (int j = 0; j < v; j++) {
+                distances[i][j] = Integer.MAX_VALUE;
+            }
+        }
+
+        for (int i = 0; i < v; i++) {
+            distances[i][i]=0;
+        }
+
+        //se necesita continuar floyd
+
+        return distances;
+
+    }
+
     public GraphListaadyacencia<V> primL() {
         if (vertices.size() == 0) {
             return null;
