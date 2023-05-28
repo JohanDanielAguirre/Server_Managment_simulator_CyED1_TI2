@@ -9,7 +9,7 @@ public interface Graph<V> {
     public void agregarVertice(Vertex<V> vertice);
     public void deleteEdge(Vertex<V> source, Vertex<V> destination);
     public boolean deleteVertex(Vertex<V> vertex);
-    public int[] Dijsktra(Vertex<V> start);
+    public ArrayList<Vertex<V>> Dijsktra(Vertex<V> start, Vertex<V> end);
 
 
 
