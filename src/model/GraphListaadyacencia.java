@@ -2,7 +2,7 @@ package model;
 
 import java.util.*;
 
-public class GraphListaadyacencia<V> implements  Graph<V>{
+public class GraphListaadyacencia<V extends Vertex<V>> implements  Graph<V>{
     private ArrayList<Vertex<V>> vertices;
     private int time=0;
 
@@ -24,11 +24,6 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
         if(vertice!=null){
             vertices.add(vertice);
         }
-    }
-
-    @Override
-    public void deleteEdge(Vertex<V> source, Vertex<V> destination) {
-
     }
 
     @Override
@@ -133,7 +128,7 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
         return true;
     }
     @Override
-    public boolean deleteVertex(Vertex<V> vertice) {
+    public boolean borrarVertice(Vertex<V> vertice) {
         if (vertice == null) {
             return false; // El vértice a eliminar es null, no se puede eliminar
         }
@@ -239,7 +234,7 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
         return shortestPath;
     }
 
-    public GraphListaadyacencia<V> prim() {
+    public GraphListaadyacencia<V> primL() {
         if (vertices.size() == 0) {
             return null;
         }
@@ -305,6 +300,11 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
         }
 
         return arbolMinimo;
+    }
+
+    @Override
+    public GraphAdjacencyMatrix<V> primM() {
+        return null;
     }
 
     public GraphListaadyacencia<V> kruskal() {

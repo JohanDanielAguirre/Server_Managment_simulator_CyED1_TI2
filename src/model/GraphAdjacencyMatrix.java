@@ -27,7 +27,7 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph<V>{
     }
 
     @Override
-    public boolean deleteVertex(Vertex<V> vertex) {
+    public boolean borrarVertice(Vertex<V> vertex) {
         int vertexIndex = vertices.indexOf(vertex);
         vertices.remove(vertexIndex);
         numVertices--;
@@ -57,6 +57,11 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph<V>{
         return null;
     }
 
+    @Override
+    public GraphListaadyacencia<V> primL() {
+        return null;
+    }
+
 
     public int[] Dijsktra(Vertex<V> start) {
         return new int[0];
@@ -72,7 +77,7 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph<V>{
         }
     }
     @Override
-    public void deleteEdge(Vertex<V> source, Vertex<V> destination) {
+    public boolean borrarArista(Vertex<V> source, Vertex<V> destination) {
         int sourceIndex = vertices.indexOf(source);
         int destinationIndex = vertices.indexOf(destination);
 
@@ -80,6 +85,7 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph<V>{
             adjacencyMatrix[sourceIndex][destinationIndex] = 0;
             adjacencyMatrix[destinationIndex][sourceIndex] = 0;
         }
+        return false;
     }
 
     public void printGraph() {
@@ -171,7 +177,7 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph<V>{
         return time;
     }
 
-    public GraphAdjacencyMatrix<V> prim() {
+    public GraphAdjacencyMatrix<V> primM() {
         if (vertices.size() == 0) {
             return null;
         }
@@ -238,6 +244,11 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph<V>{
         }
 
         return arbolMinimo;
+    }
+
+    @Override
+    public GraphListaadyacencia<V> kruskal() {
+        return null;
     }
 
 }

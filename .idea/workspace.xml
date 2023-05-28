@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8df48a02-1b9e-42a9-bece-17c21ac52617" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/~WRL0005.tmp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Graph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/GraphAdjacencyMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GraphAdjacencyMatrix.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/GraphListaadyacencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GraphListaadyacencia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Graphtest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Graphtest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
