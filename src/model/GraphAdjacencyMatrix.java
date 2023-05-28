@@ -7,6 +7,18 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph<V>{
     private int[][] adjacencyMatrix;
     private List<V> vertices;
 
+    public int getNumVertices() {
+        return numVertices;
+    }
+
+    public int[][] getAdjacencyMatrix() {
+        return adjacencyMatrix;
+    }
+
+    public List<V> getVertices() {
+        return vertices;
+    }
+
     public GraphAdjacencyMatrix(int numVertices) {
         this.numVertices = numVertices;
         this.adjacencyMatrix = new int[numVertices][numVertices];
