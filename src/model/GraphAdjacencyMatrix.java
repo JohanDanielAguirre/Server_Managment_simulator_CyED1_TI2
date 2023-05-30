@@ -259,7 +259,7 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph<V>{
     }
 
     @Override
-    public GraphListaadyacencia<V> kruskal() {
+    public GraphListaadyacencia<V> kruskalL() {
         return null;
     }
 

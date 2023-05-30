@@ -15,7 +15,7 @@ public interface Graph<V extends Vertex<V>> {
 
     public GraphAdjacencyMatrix<V> primM();
 
-    public GraphListaadyacencia<V> kruskal();
+    public GraphListaadyacencia<V> kruskalL();
 
 
 

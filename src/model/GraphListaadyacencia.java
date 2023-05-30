@@ -150,41 +150,7 @@ public class GraphListaadyacencia<V extends Vertex<V>> implements  Graph<V>{
         return true;
     }
 
-    /*@Override
-    public int[] Dijsktra(Vertex<V> start) {
 
-        start.setDistance(0);//Utilizo la variable distance
-        //Cree una clase tupla para no utilizar el map, pero si quieres cambialo
-        PriorityQueue<Tuple<V>> minHeap = new PriorityQueue<>(Comparator.comparingInt(Tuple::getDistance));
-        //Seteo las distancias, previos y los añados a la queue
-        for (Vertex<V> v:
-             vertices) {
-
-            if (v!=start){
-                v.setDistance(Integer.MAX_VALUE);
-            }
-            v.setParent(null);
-            minHeap.add(new Tuple<>(v,v.getDistance()));
-
-        }
-        //Se supone que aqui se encuentra el camino minimo, es basicamente casi lo mismo que prim
-        while (!minHeap.isEmpty()){
-            Vertex<V> u = minHeap.poll().getVertex();
-            for (Map.Entry<Vertex<V>,Integer> v :
-                    u.getAdyacentes()) {
-                int dist = u.getDistance() + v.getValue();
-                if(dist < v.getValue()){
-                    v.getKey().setDistance(dist);
-                    v.getKey().setParent(u);
-                    //Aqui iria el decrease
-                }
-            }
-        }
-
-
-        //No se que retornar
-        return null;
-    }*/
 
     @Override
     public ArrayList<Vertex<V>> Dijsktra(Vertex<V> source, Vertex<V> objective) {
@@ -264,6 +230,7 @@ public class GraphListaadyacencia<V extends Vertex<V>> implements  Graph<V>{
         PriorityQueue<Map.Entry<Vertex<V>, Integer>> minHeap = new PriorityQueue<>(Comparator.comparingInt(Map.Entry::getValue));
         Map<Vertex<V>, Integer> key = new HashMap<>();
         Map<Vertex<V>, Vertex<V>> parent = new HashMap<>();
+
         for (Vertex<V> v : vertices) {
             key.put(v, Integer.MAX_VALUE);
             parent.put(v, null);
@@ -275,7 +242,7 @@ public class GraphListaadyacencia<V extends Vertex<V>> implements  Graph<V>{
             Vertex<V> u = minHeap.poll().getKey();
             visited.add(u);
 
-            for (Map.Entry<Vertex<V>,Integer> entry : u.getAdyacentes()) {
+            for (Map.Entry<Vertex<V>, Integer> entry : u.getAdyacentes()) {
                 Vertex<V> v = entry.getKey();
                 int peso = entry.getValue();
 
@@ -296,39 +263,30 @@ public class GraphListaadyacencia<V extends Vertex<V>> implements  Graph<V>{
         }
         // Construir el árbol mínimo
         GraphListaadyacencia<V> arbolMinimo = new GraphListaadyacencia<>();
-        Map<Vertex<V>, Vertex<V>> vertexMap = new HashMap<>();
-
-        for (Vertex<V> v : vertices) {
-            Vertex<V> newVertex = new Vertex<>(v.getDato());
-            arbolMinimo.agregarVertice(newVertex);
-            vertexMap.put(v, newVertex);
-        }
-
+        for (Vertex<V> v : vertices) {arbolMinimo.agregarVertice(new Vertex<>(v.getDato()));}
         for (Vertex<V> v : parent.keySet()) {
             Vertex<V> p = parent.get(v);
             if (p != null) {
                 int peso = 0;
-                for (Map.Entry<Vertex<V>,Integer> entry : p.getAdyacentes()) {
+                for (Map.Entry<Vertex<V>, Integer> entry : p.getAdyacentes()) {
                     if (entry.getKey().equals(v)) {
                         peso = entry.getValue();
                         break;
                     }
                 }
-                Vertex<V> newV = vertexMap.get(v);
-                Vertex<V> newP = vertexMap.get(p);
-                arbolMinimo.agregarArista(newP, newV, peso);
+                arbolMinimo.agregarArista(arbolMinimo.getVertices().get(arbolMinimo.getVertices().indexOf(p)), arbolMinimo.getVertices().get(arbolMinimo.getVertices().indexOf(v)), peso);
             }
         }
-
         return arbolMinimo;
     }
+
 
     @Override
     public GraphAdjacencyMatrix<V> primM() {
         return null;
     }
 
-    public GraphListaadyacencia<V> kruskal() {
+    public GraphListaadyacencia<V> kruskalL() {
         // Create a new graph to store the minimum spanning tree
         GraphListaadyacencia<V> minimumSpanningTree = new GraphListaadyacencia<>();
 
@@ -423,5 +381,15 @@ public class GraphListaadyacencia<V extends Vertex<V>> implements  Graph<V>{
             }
         }
         return distances;
+    }
+
+    public Vertex<V> findVertex(String name) {
+        for (int i = 0; i < vertices.size(); i++) {
+            String dato = String.valueOf(vertices.get(i).getDato());
+            if (dato.equals(name)) {
+                return vertices.get(i);
+            }
+        }
+        return null;
     }
 }
