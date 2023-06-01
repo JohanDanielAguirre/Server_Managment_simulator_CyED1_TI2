@@ -5,20 +5,26 @@ import com.example.servermanagement.model.GraphListaadyacencia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.fxml.FXML;
+import javafx.scene.paint.Color;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class MainController {
+public class MainController implements Initializable {
 
     private GraphListaadyacencia graph;
 
-    public void initialize() {
-        GraphListaadyacencia g = new GraphListaadyacencia<>();
-        this.graph = g;
-    }
+    @FXML
+    public Canvas graphDisplay;
+
+    private GraphicsContext gc;
 
     @FXML
     public void onAddServer(ActionEvent event) {
@@ -51,6 +57,22 @@ public class MainController {
         checkDataTransferController.setGraph(graph);
     }
 
+    public void draw(){
+
+        if (!graph.getVertices().isEmpty()){
+
+            for (int i = 0; i < graph.getVertices().size(); i++) {
+                gc.setFill(Color.WHITE);
+                gc.fillOval(100,100,100,100);
+                System.out.println(graph.getVertices().get(i));
+
+            }
+        }
+
+        System.out.println(10);
+
+    }
+
 
 
     public GraphListaadyacencia getGraph() {
@@ -59,5 +81,12 @@ public class MainController {
 
     public void setGraph(GraphListaadyacencia graph) {
         this.graph = graph;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        gc = graphDisplay.getGraphicsContext2D();
+        GraphListaadyacencia g = new GraphListaadyacencia<>();
+        this.graph = g;
     }
 }

@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b482cee-dd2e-45dc-b14b-281a4669a066" name="Changes" comment="" />
+    <list default="true" id="7b482cee-dd2e-45dc-b14b-281a4669a066" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/servermanagement/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/servermanagement/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/servermanagement/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/servermanagement/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/servermanagement/model/Graphtest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/servermanagement/model/Graphtest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,8 +23,18 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
@@ -38,7 +53,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Usuario/OneDrive - Universidad Icesi (@icesi.edu.co)/Dicretas 1/airline_administrator",
+    "last_opened_file_path": "C:/Users/Usuario/OneDrive - Universidad Icesi (@icesi.edu.co)/APO2/APO2-2023-1/demoJavaFX",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -85,6 +100,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Graphtest.testdijkstranormalmatrix" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ServerManagement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.servermanagement.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.servermanagement.model" />
+      <option name="MAIN_CLASS_NAME" value="com.example.servermanagement.model.Graphtest" />
+      <option name="METHOD_NAME" value="testdijkstranormalmatrix" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Unnamed" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="ServerManagement" />
       <option name="PACKAGE_NAME" value="com.example.servermanagement.model" />
@@ -98,10 +129,12 @@
     <list>
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="JUnit.Unnamed" />
+      <item itemvalue="JUnit.Graphtest.testdijkstranormalmatrix" />
       <item itemvalue="JUnit.Graphtest.testdijkstranormal2list" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Graphtest.testdijkstranormalmatrix" />
         <item itemvalue="JUnit.Graphtest.testdijkstranormal2list" />
       </list>
     </recent_temporary>
@@ -109,17 +142,32 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="dba16a9d-258b-481a-ab83-aea10dccece8" name="Changes" comment="" />
+      <changelist id="7b482cee-dd2e-45dc-b14b-281a4669a066" name="Changes" comment="" />
       <created>1685310200306</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685310200306</updated>
       <workItem from="1685511725727" duration="2227000" />
       <workItem from="1685554197343" duration="1820000" />
+      <workItem from="1685575234512" duration="1304000" />
+      <workItem from="1685582548956" duration="2772000" />
+      <workItem from="1685598959911" duration="1961000" />
+      <workItem from="1685640229133" duration="5753000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/servermanagement/controller/MainController.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

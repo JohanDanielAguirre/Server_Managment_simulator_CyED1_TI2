@@ -18,7 +18,6 @@ public class MainApplication extends Application {
         try {
             FXMLLoader loader = renderView("main-view.fxml");
             MainController controller = loader.getController();
-            controller.initialize();
         } catch (Exception e) {
             e.printStackTrace();
         }
