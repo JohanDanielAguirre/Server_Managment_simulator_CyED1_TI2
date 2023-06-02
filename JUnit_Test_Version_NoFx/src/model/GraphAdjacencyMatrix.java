@@ -217,13 +217,13 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
             time = 0;
             for (Vertex<V> v : vertices) {
                 if (v.getC() == Colors.WHITE) {
-                    dfsVisit(v, time);
+                    dfsVisit(v);
                 }
             }
         }
     }
 
-    private int dfsVisit(Vertex<V> v, int time) {
+    private int dfsVisit(Vertex<V> v) {
         time += 1;
         v.setDistance(time);
         v.setC(Colors.GREY);
@@ -240,7 +240,7 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
 
                 if (u.getC() == Colors.WHITE) {
                     u.setParent(v);
-                    time = dfsVisit(u, time); // Update the time parameter after the recursive call
+                    time = dfsVisit(u); // Update the time parameter after the recursive call
                 }
             }
         }
