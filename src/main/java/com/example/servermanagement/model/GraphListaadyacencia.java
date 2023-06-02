@@ -2,7 +2,7 @@ package com.example.servermanagement.model;
 
 import java.util.*;
 
-public class GraphListaadyacencia<V> implements  Graph<V>{
+public class GraphListaadyacencia<V> implements Graph<V>{
     private ArrayList<Vertex<V>> vertices;
     private int time=0;
 
@@ -369,6 +369,11 @@ public class GraphListaadyacencia<V> implements  Graph<V>{
 
         // Return the minimum spanning tree graph
         return minimumSpanningTree;
+    }
+
+    @Override
+    public GraphAdjacencyMatrix<V> kruskalM() {
+        return null;
     }
 
     public double[][] floydL() {

@@ -136,6 +136,68 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
     }
 
     @Override
+    public GraphAdjacencyMatrix<V> kruskalM() {
+        // Create a new graph to store the minimum spanning tree
+        GraphAdjacencyMatrix minimumSpanningTree = new GraphAdjacencyMatrix<>(numVertices);
+
+        // Create a list to store all the edges in the graph
+        List<Map.Entry<Vertex<V>, Double>> allEdges = new ArrayList<>();
+
+        // Populate the list with all the edges from the graph
+        for (Vertex<V> vertex : vertices) {
+            allEdges.addAll(vertex.getAdyacentes());
+        } // I need to change this part exactly and it is done
+
+        // Sort the edges in non-decreasing order based on their weights
+        allEdges.sort(Comparator.comparingDouble(Map.Entry::getValue));
+
+        // Create a map to keep track of the connected components
+        Map<Vertex<V>, List<Vertex<V>>> connectedComponents = new HashMap<>();
+
+        // Process each edge in the sorted order
+        for (Map.Entry<Vertex<V>, Double> edge : allEdges) {
+            // Get the source and destination vertices of the edge
+            Vertex<V> source = edge.getKey();
+            Vertex<V> destination = edge.getKey();
+
+            // Check if the source and destination vertices belong to different components
+            List<Vertex<V>> component1 = connectedComponents.get(source);
+            List<Vertex<V>> component2 = connectedComponents.get(destination);
+
+            // If the source vertex doesn't belong to any component, create a new component for it
+            if (component1 == null) {
+                component1 = new ArrayList<>();
+                component1.add(source);
+                connectedComponents.put(source, component1);
+            }
+
+            // If the destination vertex doesn't belong to any component, create a new component for it
+            if (component2 == null) {
+                component2 = new ArrayList<>();
+                component2.add(destination);
+                connectedComponents.put(destination, component2);
+            }
+
+            // If the source and destination vertices belong to different components, merge the components
+            if (!component1.equals(component2)) {
+                // Add the edge to the minimum spanning tree
+                minimumSpanningTree.addEdge(source, destination, edge.getValue());
+
+                // Merge the connected components
+                component1.addAll(component2);
+
+                // Update the component mapping for all vertices in component2
+                for (Vertex<V> vertex : component2) {
+                    connectedComponents.put(vertex, component1);
+                }
+            }
+        }
+
+        // Return the minimum spanning tree graph
+        return minimumSpanningTree;
+    }
+
+    @Override
     public void addEdge(Vertex<V> origen, Vertex<V> destino, double peso) {
         int sourceIndex = vertices.indexOf(origen);
         int destinationIndex = vertices.indexOf(destino);

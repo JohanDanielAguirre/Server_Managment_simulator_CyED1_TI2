@@ -21,5 +21,6 @@ public interface Graph<V> {
     public double[][] floydM();
 
     public GraphListaadyacencia<V> kruskal();
+    public GraphAdjacencyMatrix<V> kruskalM();
 
 }
