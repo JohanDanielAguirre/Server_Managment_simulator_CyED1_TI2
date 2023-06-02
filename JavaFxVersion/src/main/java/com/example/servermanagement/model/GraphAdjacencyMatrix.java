@@ -6,6 +6,8 @@ import java.util.*;
 public class GraphAdjacencyMatrix<V> implements Graph<V>{
     private int numVertices;
     private double[][] adjacencyMatrix;
+
+    private int time=0;
     private List<Vertex<V>> vertices;
 
     public int getNumVertices() {
@@ -43,7 +45,8 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
     }
 
     @Override
-    public GraphAdjacencyMatrix<V> AdjustedWeights(GraphAdjacencyMatrix<V> g, double amountData) {
+    public GraphAdjacencyMatrix<V> AdjustedWeights(GraphAdjacencyMatrix<V> graph, double amountData) {
+        GraphAdjacencyMatrix<V> g = graph;
         double[][] newMatrix = new double[numVertices][numVertices];
         for(int i = 0; i<g.getAdjacencyMatrix().length; i++){
             for(int j = 0; j<g.getAdjacencyMatrix().length; j++){
@@ -60,80 +63,103 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
         return g;
     }
 
-    @Override
     public void addVertex(Vertex<V> vertex) {
-        if(vertex == null){
+        if(vertex == null || vertices.indexOf(vertex)!=-1){
             return;
         }
-        if (!vertices.contains(vertex)) {
-            vertices.add((Vertex<V>) vertex);
-            numVertices++;
+        vertices.add(vertex);
+        numVertices++;
 
-            double[][] newMatrix = new double[numVertices][numVertices];
-            for (int i = 0; i < numVertices - 1; i++) {
-                System.arraycopy(adjacencyMatrix[i], 0, newMatrix[i], 0, numVertices - 1);
-            }
-            adjacencyMatrix = newMatrix;
-        }
-    }
+        int size = adjacencyMatrix.length;
+        double[][] newMatrix = new double[size + 1][size + 1];
 
-    @Override
-    public boolean remVertex(Vertex<V> vertex) {
-        if(vertex == null){
-            return false;
-        }
-        double vertexIndex = vertices.indexOf(vertex);
-        vertices.remove(vertexIndex);
-        numVertices--;
-
-        double[][] newMatrix = new double[numVertices][numVertices];
-        int rowIndex = 0;
-        int colIndex;
-        for (int i = 0; i < numVertices + 1; i++) {
-            if (i != vertexIndex) {
-                colIndex = 0;
-                for (int j = 0; j < numVertices + 1; j++) {
-                    if (j != vertexIndex) {
-                        newMatrix[rowIndex][colIndex] = adjacencyMatrix[i][j];
-                        colIndex++;
-                    }
-                }
-                rowIndex++;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                newMatrix[i][j] = adjacencyMatrix[i][j];
             }
         }
+
+        for (int i = 0; i <= size; i++) {
+            newMatrix[i][size] = Double.POSITIVE_INFINITY;
+            newMatrix[size][i] = Double.POSITIVE_INFINITY;
+        }
+
+        for (int i = 0; i <= size; i++) {
+            newMatrix[i][i] = 0.0;
+        }
+
         adjacencyMatrix = newMatrix;
 
-
-        return true; //Hay que cambiar esto
+        return;
     }
 
-    @Override
-    public void addEdge(Vertex<V> source, Vertex<V> destination, double peso){
+    public void addEdge(Vertex<V> source, Vertex<V> destination, double weight) {
         if(source == null || destination == null){
             return;
         }
+
         int sourceIndex = vertices.indexOf(source);
         int destinationIndex = vertices.indexOf(destination);
 
-        if (sourceIndex != -1 && destinationIndex != -1) {
-            adjacencyMatrix[sourceIndex][destinationIndex] = peso;
-            adjacencyMatrix[destinationIndex][sourceIndex] = peso;
+        if(adjacencyMatrix[sourceIndex][destinationIndex]!=Double.POSITIVE_INFINITY){
+            return;
         }
+
+        if (sourceIndex != -1 && destinationIndex != -1) {
+            adjacencyMatrix[sourceIndex][destinationIndex] = weight;
+            adjacencyMatrix[destinationIndex][sourceIndex] = weight;
+            return;
+        }
+
         return;
     }
-    @Override
-    public boolean remEdge(Vertex<V> source, Vertex<V> destination) {
-        if(source == null || destination == null){
-            return false;
-        }
-        int sourceIndex = vertices.indexOf(source);
-        int destinationIndex = vertices.indexOf(destination);
 
-        if (sourceIndex != -1 && destinationIndex != -1) {
-            adjacencyMatrix[sourceIndex][destinationIndex] = 0;
-            adjacencyMatrix[destinationIndex][sourceIndex] = 0;
+    public boolean remVertex(Vertex<V> vertex) {
+        int vertexIndex = vertices.indexOf(vertex);
+
+        if (vertexIndex != -1) {
+            vertices.remove(vertexIndex);
+            numVertices--;
+
+            int size = adjacencyMatrix.length;
+            double[][] newMatrix = new double[size - 1][size - 1];
+
+            int newRow = 0;
+            int newColumn;
+            for (int row = 0; row < size; row++) {
+                if (row == vertexIndex) {
+                    continue;
+                }
+
+                newColumn = 0;
+                for (int column = 0; column < size; column++) {
+                    if (column == vertexIndex) {
+                        continue;
+                    }
+
+                    newMatrix[newRow][newColumn] = adjacencyMatrix[row][column];
+                    newColumn++;
+                }
+
+                newRow++;
+            }
+
+            adjacencyMatrix = newMatrix;
             return true;
         }
+
+        return false;
+    }
+
+    public boolean remEdge(Vertex<V> sourceVertex, Vertex<V> destinationVertex) {
+        int sourceIndex = vertices.indexOf(sourceVertex);
+        int destinationIndex = vertices.indexOf(destinationVertex);
+
+        if (sourceIndex != -1 && destinationIndex != -1) {
+            adjacencyMatrix[sourceIndex][destinationIndex] = Double.POSITIVE_INFINITY;
+            return true;
+        }
+
         return false;
     }
 
@@ -147,42 +173,39 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
     }
 
     @Override
-    public void bfs(Vertex<V> v) {
-        if (vertices.size() > 0) {
-            for (Vertex<V> vertex : vertices) {
-                vertex.setC(Colors.WHITE);
-                vertex.setDistance(0);
-                vertex.setParent(null);
-                bfsInner(v);
-            }
-        }
-    }
-
-    private void bfsInner(Vertex<V> v) {
-        v.setC(Colors.GREY);
-        v.setDistance(0);
-        v.setParent(null);
+    public void bfs(Vertex<V> source) {
+        // Set the source vertex distance to 0 and color to GRAY
+        source.setDistance(0);
+        source.setC(Colors.GREY);
 
         Queue<Vertex<V>> queue = new LinkedList<>();
-        queue.add(v);
+        queue.add(source);
 
         while (!queue.isEmpty()) {
-            Vertex<V> u = queue.poll();
+            Vertex<V> currentVertex = queue.poll();
+            int currentIndex = vertices.indexOf(currentVertex);
 
-            for (int i = 0; i < numVertices; i++) {
-                if (adjacencyMatrix[vertices.indexOf(u)][i] != 0) {
-                    Vertex<V> adj = vertices.get(i);
+            double[] currentRow = adjacencyMatrix[currentIndex];
 
-                    if (adj.getC() == Colors.WHITE) {
-                        adj.setC(Colors.GREY);
-                        adj.setDistance(u.getDistance() + 1);
-                        adj.setParent(u);
-                        queue.add(adj);
+            for (int i = 0; i < currentRow.length; i++) {
+                double weight = currentRow[i];
+
+                // Check if there is an edge between currentVertex and vertex at index i
+                if (weight != Double.POSITIVE_INFINITY) {
+                    Vertex<V> adjacentVertex = vertices.get(i);
+
+                    // Check if the adjacent vertex is unvisited (WHITE)
+                    if (adjacentVertex.getC() == Colors.WHITE) {
+                        adjacentVertex.setC(Colors.GREY);
+                        adjacentVertex.setDistance(currentVertex.getDistance() + 1);
+                        adjacentVertex.setParent(currentVertex);
+                        queue.add(adjacentVertex);
                     }
                 }
             }
 
-            u.setC(Colors.BLACK);
+            // Set the color of the current vertex to BLACK to mark it as visited
+            currentVertex.setC(Colors.BLACK);
         }
     }
 
@@ -194,37 +217,44 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
                 v.setC(Colors.WHITE);
                 v.setParent(null);
             }
-            int time = 0;
+            time = 0;
             for (Vertex<V> v : vertices) {
                 if (v.getC() == Colors.WHITE) {
-                    time = dfsInner(v, time);
+                    dfsVisit(v);
                 }
             }
         }
     }
 
-    private int dfsInner(Vertex<V> v, int time) {
+    private int dfsVisit(Vertex<V> v) {
         time += 1;
         v.setDistance(time);
         v.setC(Colors.GREY);
 
-        for (int i = 0; i < numVertices; i++) {
-            if (adjacencyMatrix[vertices.indexOf(v)][i] != 0) {
-                Vertex<V> adj = (Vertex<V>) vertices.get(i);
+        int currentIndex = vertices.indexOf(v);
+        double[] currentRow = adjacencyMatrix[currentIndex];
 
-                if (adj.getC() == Colors.WHITE) {
-                    adj.setParent(v);
-                    time = dfsInner(adj, time);
+        for (int i = 0; i < currentRow.length; i++) {
+            double weight = currentRow[i];
+
+            // Check if there is an edge between the current vertex and the vertex at index i
+            if (weight != Double.POSITIVE_INFINITY) {
+                Vertex<V> u = vertices.get(i);
+
+                if (u.getC() == Colors.WHITE) {
+                    u.setParent(v);
+                    time = dfsVisit(u); // Update the time parameter after the recursive call
                 }
             }
         }
 
         v.setC(Colors.BLACK);
         time += 1;
-        v.setDistancefinal(time);
+        v.setDistancefinal(time); // Set the final distance after traversing all connections
 
-        return time;
+        return time; // Return the updated time value
     }
+
 
     @Override
     public ArrayList<Vertex<V>> Dijsktra(Vertex<V> start, Vertex<V> end) {
@@ -279,7 +309,7 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
 
     @Override
     public double[][] floydL() {
-        return new double[0][];
+        return new double[0][0];
     }
 
     public double[][] floydM(){
@@ -397,7 +427,10 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
     @Override
     public GraphAdjacencyMatrix<V> kruskalM() {
         // Create a new graph to store the minimum spanning tree
-        GraphAdjacencyMatrix minimumSpanningTree = new GraphAdjacencyMatrix<>(numVertices);
+        GraphAdjacencyMatrix<V> minimumSpanningTree = new GraphAdjacencyMatrix<>(0);
+        for(int i = 0; i< adjacencyMatrix.length; i++){
+            minimumSpanningTree.addVertex(new Vertex<>(vertices.get(i).getDato()));
+        }
 
         // Create a list to store all the edges in the graph
         List<Map.Entry<Vertex<V>, Double>> allEdges = new ArrayList<>();
@@ -406,8 +439,8 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
         for (Vertex<V> vertex : vertices) {
             int i = vertices.indexOf(vertex);
             for (int j = 0; j < numVertices; j++) {
-                if (adjacencyMatrix[i][j] != 0){
-                    allEdges.add(new AbstractMap.SimpleEntry<>(vertex,adjacencyMatrix[i][j]));
+                if (adjacencyMatrix[i][j] != 0) {
+                    allEdges.add(new AbstractMap.SimpleEntry<>(vertex, adjacencyMatrix[i][j]));
                 }
             }
         }
@@ -460,5 +493,7 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
         // Return the minimum spanning tree graph
         return minimumSpanningTree;
     }
+
+
 
 }

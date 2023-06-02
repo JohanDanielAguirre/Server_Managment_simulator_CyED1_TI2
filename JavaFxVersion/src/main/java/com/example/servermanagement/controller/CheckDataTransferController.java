@@ -32,15 +32,19 @@ public class CheckDataTransferController<V extends Vertex<V>> {
     private Label speed;
 
     private GraphListaadyacencia graph;
+    private GraphAdjacencyMatrix graphM;
 
     @FXML
     public void onCheckDataTransfer(ActionEvent actionEvent){
+        //By changing graph to graphM you can change which to use
         String origin = originServer.getText();
         String goal = goalServer.getText();
         String amountD = amountData.getText();
         double amount = Double.parseDouble(amountD);
 
-        GraphListaadyacencia<V> g = graph.AdjustedWeights(graph, amount);
+        GraphListaadyacencia<V> g = graph;
+
+        g.AdjustedWeights(g,amount);
 
         Vertex v1 = g.findVertex(origin);
         Vertex v2 = g.findVertex(goal);
@@ -86,5 +90,13 @@ public class CheckDataTransferController<V extends Vertex<V>> {
 
     public void setGraph(GraphListaadyacencia graph) {
         this.graph = graph;
+    }
+
+    public GraphAdjacencyMatrix getGraphM() {
+        return graphM;
+    }
+
+    public void setGraphM(GraphAdjacencyMatrix graphM) {
+        this.graphM = graphM;
     }
 }

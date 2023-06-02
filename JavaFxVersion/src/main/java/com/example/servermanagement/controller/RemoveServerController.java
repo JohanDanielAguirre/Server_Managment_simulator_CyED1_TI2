@@ -1,5 +1,6 @@
 package com.example.servermanagement.controller;
 
+import com.example.servermanagement.model.GraphAdjacencyMatrix;
 import com.example.servermanagement.model.GraphListaadyacencia;
 import com.example.servermanagement.model.Vertex;
 import javafx.event.ActionEvent;
@@ -13,11 +14,14 @@ public class RemoveServerController {
     private TextField serverName;
 
     private GraphListaadyacencia graph;
+    private GraphAdjacencyMatrix graphM;
 
     @FXML
     public void onRemoveServer(ActionEvent actionEvent){
+        //By changing graph to graphM you can change which to use
         String name = serverName.getText();
         graph.remVertex(graph.findVertex(name));
+        //graphM.remVertex(graphM.findVertex(name));
     }
 
     @FXML
@@ -32,5 +36,13 @@ public class RemoveServerController {
 
     public void setGraph(GraphListaadyacencia graph) {
         this.graph = graph;
+    }
+
+    public GraphAdjacencyMatrix getGraphM() {
+        return graphM;
+    }
+
+    public void setGraphM(GraphAdjacencyMatrix graphM) {
+        this.graphM = graphM;
     }
 }

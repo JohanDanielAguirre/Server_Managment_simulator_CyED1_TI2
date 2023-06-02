@@ -27,12 +27,12 @@ public class GraphListaadyacencia<V> implements Graph<V>{
         }
         return null;
     }
-    public void addVertex(Vertex<V> vertice) {
-        if(vertices.contains(vertice)){
+    public void addVertex(Vertex<V> vertex) {
+        if(vertices.contains(vertex)){
             return;
         }
-        if(vertice!=null){
-            vertices.add(vertice);
+        if(vertex!=null){
+            vertices.add(vertex);
         }
     }
 
@@ -162,7 +162,8 @@ public class GraphListaadyacencia<V> implements Graph<V>{
         v.setDistancefinal(time);
     }
 
-    public GraphListaadyacencia<V> AdjustedWeights(GraphListaadyacencia<V> g, double amountData) {
+    public GraphListaadyacencia<V> AdjustedWeights(GraphListaadyacencia<V> graph, double amountData) {
+        GraphListaadyacencia<V> g = graph;
         // Iterate over each vertex in the original graph
         for (Vertex<V> vertex : g.getVertices()) {
             // Iterate over each adjacent vertex and adjust the weight
@@ -314,10 +315,9 @@ public class GraphListaadyacencia<V> implements Graph<V>{
         return new double[0][];
     }
 
-    @Override
     public GraphListaadyacencia<V> kruskal() {
         // Create a new graph to store the minimum spanning tree
-        GraphListaadyacencia minimumSpanningTree = new GraphListaadyacencia<>();
+        GraphListaadyacencia<V> minimumSpanningTree = new GraphListaadyacencia<>();
 
         // Create a list to store all the edges in the graph
         List<Map.Entry<Vertex<V>, Double>> allEdges = new ArrayList<>();
@@ -332,6 +332,11 @@ public class GraphListaadyacencia<V> implements Graph<V>{
 
         // Create a map to keep track of the connected components
         Map<Vertex<V>, List<Vertex<V>>> connectedComponents = new HashMap<>();
+
+        // Add all vertices to the minimum spanning tree
+        for (Vertex<V> vertex : vertices) {
+            minimumSpanningTree.addVertex(vertex);
+        }
 
         // Process each edge in the sorted order
         for (Map.Entry<Vertex<V>, Double> edge : allEdges) {
@@ -375,6 +380,8 @@ public class GraphListaadyacencia<V> implements Graph<V>{
         // Return the minimum spanning tree graph
         return minimumSpanningTree;
     }
+
+
 
     @Override
     public GraphAdjacencyMatrix<V> kruskalM() {

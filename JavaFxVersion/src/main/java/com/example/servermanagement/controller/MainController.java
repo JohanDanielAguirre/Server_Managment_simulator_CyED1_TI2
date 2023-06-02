@@ -1,6 +1,7 @@
 package com.example.servermanagement.controller;
 
 import com.example.servermanagement.MainApplication;
+import com.example.servermanagement.model.GraphAdjacencyMatrix;
 import com.example.servermanagement.model.GraphListaadyacencia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,8 +19,10 @@ import java.util.ResourceBundle;
 
 
 public class MainController implements Initializable {
-
+    //By changing graph to graphM you can change which to use
     private GraphListaadyacencia graph;
+
+    private GraphAdjacencyMatrix graphM;
 
     @FXML
     public Canvas graphDisplay;

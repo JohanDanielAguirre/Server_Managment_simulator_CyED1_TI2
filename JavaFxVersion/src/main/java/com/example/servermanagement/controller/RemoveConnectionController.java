@@ -1,5 +1,6 @@
 package com.example.servermanagement.controller;
 
+import com.example.servermanagement.model.GraphAdjacencyMatrix;
 import com.example.servermanagement.model.GraphListaadyacencia;
 import com.example.servermanagement.model.Vertex;
 import javafx.event.ActionEvent;
@@ -16,9 +17,11 @@ public class RemoveConnectionController {
     private TextField goalServer;
 
     private GraphListaadyacencia graph;
+    private GraphAdjacencyMatrix graphM;
 
     @FXML
     public void onAddConnection(ActionEvent actionEvent){
+        //By changing graph to graphM you can change which to use
         String origin = originServer.getText();
         String goal = goalServer.getText();
 
@@ -26,6 +29,13 @@ public class RemoveConnectionController {
         Vertex v2 = graph.findVertex(goal);
 
         graph.remEdge(v1, v2);
+
+        /*
+        Vertex v1 = graphM.findVertex(origin);
+        Vertex v2 = graphM.findVertex(goal);
+
+        graphM.remEdge(v1, v2);
+         */
     }
 
     @FXML
@@ -40,5 +50,13 @@ public class RemoveConnectionController {
 
     public void setGraph(GraphListaadyacencia graph) {
         this.graph = graph;
+    }
+
+    public GraphAdjacencyMatrix getGraphM() {
+        return graphM;
+    }
+
+    public void setGraphM(GraphAdjacencyMatrix graphM) {
+        this.graphM = graphM;
     }
 }
