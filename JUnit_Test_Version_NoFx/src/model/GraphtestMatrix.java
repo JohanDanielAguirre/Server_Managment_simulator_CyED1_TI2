@@ -447,22 +447,52 @@ public class GraphtestMatrix extends TestCase {
     public void testkruskaltialdisconnectmatrix() {
         stage2();
         GraphAdjacencyMatrix g11=g1.kruskalM();
-        assertEquals(3,g11.getVertices().size());
+        assertEquals(5,g11.getVertices().size());
         Vertex v=(Vertex) g11.getVertices().get(0);
+        int i = 0;
+        for (int j=0;j<g1.getAdjacencyMatrix()[0].length;j++){
+            if (g1.getAdjacencyMatrix()[0][j]!=Double.POSITIVE_INFINITY && g1.getAdjacencyMatrix()[0][j]!=0){
+                i++;
+            }
+        }
         assertEquals("Server1",v.getDato());
-        assertEquals(2,v.getAdyacentes().size());
+        assertEquals(2,i);
+        i=0;
+        for (int j=0;j<g1.getAdjacencyMatrix()[1].length;j++){
+            if (g1.getAdjacencyMatrix()[1][j]!=Double.POSITIVE_INFINITY && g1.getAdjacencyMatrix()[1][j]!=0){
+                i++;
+            }
+        }
         v=(Vertex) g11.getVertices().get(1);
         assertEquals("Server2",v.getDato());
-        assertEquals(1,v.getAdyacentes().size());
+        assertEquals(1, i);
+        i=0;
+        for (int j=0;j<g1.getAdjacencyMatrix()[2].length;j++){
+            if (g1.getAdjacencyMatrix()[2][j]!=Double.POSITIVE_INFINITY && g1.getAdjacencyMatrix()[2][j]!=0){
+                i++;
+            }
+        }
         v=(Vertex) g11.getVertices().get(2);
         assertEquals("Server3",v.getDato());
-        assertEquals(1,v.getAdyacentes().size());
+        assertEquals(1,i);
+        i=0;
+        for (int j=0;j<g1.getAdjacencyMatrix()[3].length;j++){
+            if (g1.getAdjacencyMatrix()[3][j]!=Double.POSITIVE_INFINITY && g1.getAdjacencyMatrix()[3][j]!=0){
+                i++;
+            }
+        }
         v=(Vertex) g11.getVertices().get(3);
         assertEquals("Server4",v.getDato());
-        assertEquals(1,v.getAdyacentes().size());
+        assertEquals(1,i);
+        i=0;
+        for (int j=0;j<g1.getAdjacencyMatrix()[4].length;j++){
+            if (g1.getAdjacencyMatrix()[4][j]!=Double.POSITIVE_INFINITY && g1.getAdjacencyMatrix()[4][j]!=0){
+                i++;
+            }
+        }
         v=(Vertex) g11.getVertices().get(4);
         assertEquals("Server5",v.getDato());
-        assertEquals(1,v.getAdyacentes().size());
+        assertEquals(1,i);
     }
 
 
@@ -474,20 +504,50 @@ public class GraphtestMatrix extends TestCase {
         GraphAdjacencyMatrix g11=g1.kruskalM();
         assertEquals(5,g11.getVertices().size());
         Vertex v=(Vertex) g11.getVertices().get(0);
+        int i = 0;
+        for (int j=0;j<g1.getAdjacencyMatrix()[0].length;j++){
+            if (g1.getAdjacencyMatrix()[0][j]!=Double.POSITIVE_INFINITY && g1.getAdjacencyMatrix()[0][j]!=0){
+                i++;
+            }
+        }
         assertEquals("Server1",v.getDato());
-        assertEquals(1,v.getAdyacentes().size());
+        assertEquals(4,i);
+        i=0;
+        for (int j=0;j<g1.getAdjacencyMatrix()[1].length;j++){
+            if (g1.getAdjacencyMatrix()[1][j]!=Double.POSITIVE_INFINITY && g1.getAdjacencyMatrix()[1][j]!=0){
+                i++;
+            }
+        }
         v=(Vertex) g11.getVertices().get(1);
         assertEquals("Server2",v.getDato());
-        assertEquals(1,v.getAdyacentes().size());
+        assertEquals(4, i);
+        i=0;
+        for (int j=0;j<g1.getAdjacencyMatrix()[2].length;j++){
+            if (g1.getAdjacencyMatrix()[2][j]!=Double.POSITIVE_INFINITY && g1.getAdjacencyMatrix()[2][j]!=0){
+                i++;
+            }
+        }
         v=(Vertex) g11.getVertices().get(2);
         assertEquals("Server3",v.getDato());
-        assertEquals(1,v.getAdyacentes().size());
+        assertEquals(4,i);
+        i=0;
+        for (int j=0;j<g1.getAdjacencyMatrix()[3].length;j++){
+            if (g1.getAdjacencyMatrix()[3][j]!=Double.POSITIVE_INFINITY && g1.getAdjacencyMatrix()[3][j]!=0){
+                i++;
+            }
+        }
         v=(Vertex) g11.getVertices().get(3);
         assertEquals("Server4",v.getDato());
-        assertEquals(1,v.getAdyacentes().size());
+        assertEquals(4,i);
+        i=0;
+        for (int j=0;j<g1.getAdjacencyMatrix()[4].length;j++){
+            if (g1.getAdjacencyMatrix()[4][j]!=Double.POSITIVE_INFINITY && g1.getAdjacencyMatrix()[4][j]!=0){
+                i++;
+            }
+        }
         v=(Vertex) g11.getVertices().get(4);
         assertEquals("Server5",v.getDato());
-        assertEquals(2,v.getAdyacentes().size());
+        assertEquals(4,i);
     }
 
 

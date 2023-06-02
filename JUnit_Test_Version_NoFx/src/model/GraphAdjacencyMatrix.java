@@ -426,7 +426,10 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
     @Override
     public GraphAdjacencyMatrix<V> kruskalM() {
         // Create a new graph to store the minimum spanning tree
-        GraphAdjacencyMatrix minimumSpanningTree = new GraphAdjacencyMatrix<>(numVertices);
+        GraphAdjacencyMatrix<V> minimumSpanningTree = new GraphAdjacencyMatrix<>(0);
+        for(int i = 0; i< adjacencyMatrix.length; i++){
+            minimumSpanningTree.addVertex(new Vertex<>(vertices.get(i).getDato()));
+        }
 
         // Create a list to store all the edges in the graph
         List<Map.Entry<Vertex<V>, Double>> allEdges = new ArrayList<>();
@@ -435,8 +438,8 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
         for (Vertex<V> vertex : vertices) {
             int i = vertices.indexOf(vertex);
             for (int j = 0; j < numVertices; j++) {
-                if (adjacencyMatrix[i][j] != 0){
-                    allEdges.add(new AbstractMap.SimpleEntry<>(vertex,adjacencyMatrix[i][j]));
+                if (adjacencyMatrix[i][j] != 0) {
+                    allEdges.add(new AbstractMap.SimpleEntry<>(vertex, adjacencyMatrix[i][j]));
                 }
             }
         }
@@ -489,5 +492,7 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
         // Return the minimum spanning tree graph
         return minimumSpanningTree;
     }
+
+
 
 }
