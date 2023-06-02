@@ -37,17 +37,17 @@ public class GraphListaadyacencia<V> implements Graph<V>{
     }
 
     @Override
-    public void addEdge(Vertex<V> origen, Vertex<V> destino, double peso) {
-        if (origen != null && destino != null) {
-            for (int i = 0; i < origen.getAdyacentes().size(); i++) {
-                Map.Entry<Vertex<V>,Double> entry = (Map.Entry<Vertex<V>,Double>) origen.getAdyacentes().get(i);
+    public void addEdge(Vertex<V> source, Vertex<V> destination, double peso) {
+        if (source != null && destination != null) {
+            for (int i = 0; i < source.getAdyacentes().size(); i++) {
+                Map.Entry<Vertex<V>,Double> entry = (Map.Entry<Vertex<V>,Double>) source.getAdyacentes().get(i);
                 Vertex<V> v = entry.getKey();
-                if (v.equals(destino)) {
+                if (v.equals(destination)) {
                     return;
                 }
             }
-            origen.getAdyacentes().add(new AbstractMap.SimpleEntry<>(destino, peso));
-            destino.getAdyacentes().add(new AbstractMap.SimpleEntry<>(origen, peso));
+            source.getAdyacentes().add(new AbstractMap.SimpleEntry<>(destination, peso));
+            destination.getAdyacentes().add(new AbstractMap.SimpleEntry<>(source, peso));
         }
     }
 

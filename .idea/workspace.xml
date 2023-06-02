@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d0ca7d0c-db1f-4a45-9f87-54de37a2567d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/servermanagement/model/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/servermanagement/model/Graph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/servermanagement/model/GraphAdjacencyMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/servermanagement/model/GraphAdjacencyMatrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/servermanagement/model/GraphListaadyacencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/servermanagement/model/GraphListaadyacencia.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
