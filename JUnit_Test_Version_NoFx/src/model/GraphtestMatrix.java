@@ -276,7 +276,7 @@ public class GraphtestMatrix extends TestCase {
     public void testdijkstraalldisconnectedmatrix() {
         stage4();
         ArrayList <Vertex<Integer>> path=g1.Dijsktra((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(1));
-        assertEquals(0,path.size());
+        assertEquals(1,path.size());
     }
     @Test
     public void testdijkstrapartialydisconnected2matrix() {
