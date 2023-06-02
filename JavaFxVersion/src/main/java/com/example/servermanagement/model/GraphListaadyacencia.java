@@ -180,6 +180,11 @@ public class GraphListaadyacencia<V> implements Graph<V>{
     }
 
     @Override
+    public GraphAdjacencyMatrix<V> AdjustedWeights(GraphAdjacencyMatrix<V> g, double amountData) {
+        return null;
+    }
+
+    @Override
     public ArrayList<Vertex<V>> Dijsktra(Vertex<V> source, Vertex<V> objective) {
         // Initialize data structures
         Map<Vertex<V>, Double> distances = new HashMap<>();  // Stores the shortest distances from the source vertex

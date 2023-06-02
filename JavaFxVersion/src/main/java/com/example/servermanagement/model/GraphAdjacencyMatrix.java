@@ -43,6 +43,24 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
     }
 
     @Override
+    public GraphAdjacencyMatrix<V> AdjustedWeights(GraphAdjacencyMatrix<V> g, double amountData) {
+        double[][] newMatrix = new double[numVertices][numVertices];
+        for(int i = 0; i<g.getAdjacencyMatrix().length; i++){
+            for(int j = 0; j<g.getAdjacencyMatrix().length; j++){
+                if(g.getAdjacencyMatrix()[i][j]!=Double.POSITIVE_INFINITY||g.getAdjacencyMatrix()[i][j]!=0){
+                    double originalWeight = g.getAdjacencyMatrix()[i][j];
+
+                    // Calculate the adjusted weight
+                    double adjustedWeight = amountData / originalWeight;
+
+                    g.getAdjacencyMatrix()[i][j] = adjustedWeight;
+                }
+            }
+        }
+        return g;
+    }
+
+    @Override
     public void addVertex(Vertex<V> vertex) {
         if(vertex == null){
             return;
