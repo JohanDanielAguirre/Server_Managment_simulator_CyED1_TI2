@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7b482cee-dd2e-45dc-b14b-281a4669a066" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/servermanagement/model/GraphAdjacencyMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/servermanagement/model/GraphAdjacencyMatrix.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +53,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/sebas/OneDrive - Universidad Icesi (@icesi.edu.co)/Discretas I/Tareas Integradoras/airline_administrator/Server_Managment_simulator_CyED1_TI2",
+    "last_opened_file_path": "C:/Users/sebas/OneDrive - Universidad Icesi (@icesi.edu.co)/Discretas I/Tareas Integradoras/Server_Managment_simulator_CyED1_TI2 - copia",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -173,6 +172,7 @@
       <workItem from="1685640229133" duration="5753000" />
       <workItem from="1685675872719" duration="2157000" />
       <workItem from="1685709599379" duration="792000" />
+      <workItem from="1685710520251" duration="1048000" />
     </task>
     <servers />
   </component>
