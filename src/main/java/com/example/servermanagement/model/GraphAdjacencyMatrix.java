@@ -1,11 +1,12 @@
 package com.example.servermanagement.model;
 
+
 import java.util.*;
 
-public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph<V>{
+public class GraphAdjacencyMatrix<V> implements Graph<V>{
     private int numVertices;
     private double[][] adjacencyMatrix;
-    private List<V> vertices;
+    private List<Vertex<V>> vertices;
 
     public int getNumVertices() {
         return numVertices;
@@ -15,7 +16,7 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph<V>{
         return adjacencyMatrix;
     }
 
-    public List<V> getVertices() {
+    public List<Vertex<V>> getVertices() {
         return vertices;
     }
 
@@ -148,7 +149,7 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph<V>{
     @Override
     public void addVertex(Vertex<V> vertice) {
         if (!vertices.contains(vertice)) {
-            vertices.add((V) vertice);
+            vertices.add(vertice);
             numVertices++;
 
             double[][] newMatrix = new double[numVertices][numVertices];
@@ -183,7 +184,7 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph<V>{
     @Override
     public void bfs(Vertex<V> v) {
         if (vertices.size() > 0) {
-            for (V vertex : vertices) {
+            for (Vertex<V> vertex : vertices) {
                 vertex.setC(Colors.WHITE);
                 vertex.setDistance(0);
                 vertex.setParent(null);
@@ -301,7 +302,7 @@ public class GraphAdjacencyMatrix<V extends Vertex<V>> implements Graph<V>{
             }
         }
         // Construir el árbol mínimo
-        GraphAdjacencyMatrix<V> arbolMinimo = new GraphAdjacencyMatrix<>(minHeap.size());
+        GraphAdjacencyMatrix<V> arbolMinimo = new GraphAdjacencyMatrix(minHeap.size());
         Map<Vertex<V>, Vertex<V>> vertexMap = new HashMap<>();
 
         for (Vertex<V> v : vertices) {

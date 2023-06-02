@@ -2,7 +2,7 @@ package com.example.servermanagement.model;
 
 import java.util.ArrayList;
 
-public interface Graph<V extends Vertex<V>> {
+public interface Graph<V> {
     public void addEdge(Vertex<V> origen, Vertex<V> destino, double peso);
     public void addVertex(Vertex<V> vertice);
     public boolean remEdge(Vertex<V> source, Vertex<V> destination);

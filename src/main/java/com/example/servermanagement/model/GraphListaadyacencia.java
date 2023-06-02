@@ -2,7 +2,7 @@ package com.example.servermanagement.model;
 
 import java.util.*;
 
-public class GraphListaadyacencia<V extends Vertex<V>> implements  Graph<V>{
+public class GraphListaadyacencia<V> implements  Graph<V>{
     private ArrayList<Vertex<V>> vertices;
     private int time=0;
 
@@ -271,7 +271,7 @@ public class GraphListaadyacencia<V extends Vertex<V>> implements  Graph<V>{
             }
         }
         // Construir el árbol mínimo
-        GraphListaadyacencia<V> arbolMinimo = new GraphListaadyacencia<>();
+        GraphListaadyacencia<V> arbolMinimo = new GraphListaadyacencia();
         Map<Vertex<V>, Vertex<V>> vertexMap = new HashMap<>();
 
         for (Vertex<V> v : vertices) {
@@ -312,7 +312,7 @@ public class GraphListaadyacencia<V extends Vertex<V>> implements  Graph<V>{
     @Override
     public GraphListaadyacencia<V> kruskal() {
         // Create a new graph to store the minimum spanning tree
-        GraphListaadyacencia<V> minimumSpanningTree = new GraphListaadyacencia<>();
+        GraphListaadyacencia minimumSpanningTree = new GraphListaadyacencia<>();
 
         // Create a list to store all the edges in the graph
         List<Map.Entry<Vertex<V>, Double>> allEdges = new ArrayList<>();
