@@ -3,8 +3,8 @@ package com.example.servermanagement.model;
 import java.util.ArrayList;
 
 public interface Graph<V> {
-    public void addEdge(Vertex<V> origen, Vertex<V> destino, double peso);
-    public void addVertex(Vertex<V> vertice);
+    public void addEdge(Vertex<V> source, Vertex<V> destination, double peso);
+    public void addVertex(Vertex<V> vertex);
     public boolean remEdge(Vertex<V> source, Vertex<V> destination);
     public boolean remVertex(Vertex<V> vertex);
     public Vertex<V> findVertex(String name);
@@ -16,9 +16,10 @@ public interface Graph<V> {
 
     public double[][] floydL();
 
+    public double[][] floydM();
+
     public GraphListaadyacencia<V> primL();
     public GraphAdjacencyMatrix<V> primM();
-    public double[][] floydM();
 
     public GraphListaadyacencia<V> kruskal();
     public GraphAdjacencyMatrix<V> kruskalM();

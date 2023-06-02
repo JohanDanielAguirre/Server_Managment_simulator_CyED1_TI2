@@ -27,8 +27,44 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
     }
 
     @Override
+    public Vertex<V> findVertex(String name) {
+        for (int i = 0; i < vertices.size(); i++) {
+            String dato = String.valueOf(vertices.get(i).getDato());
+            if (dato.equals(name)) {
+                return vertices.get(i);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public GraphListaadyacencia<V> AdjustedWeights(GraphListaadyacencia<V> g, double amountData) {
+        return null;
+    }
+
+    @Override
+    public void addVertex(Vertex<V> vertex) {
+        if(vertex == null){
+            return;
+        }
+        if (!vertices.contains(vertex)) {
+            vertices.add((Vertex<V>) vertex);
+            numVertices++;
+
+            double[][] newMatrix = new double[numVertices][numVertices];
+            for (int i = 0; i < numVertices - 1; i++) {
+                System.arraycopy(adjacencyMatrix[i], 0, newMatrix[i], 0, numVertices - 1);
+            }
+            adjacencyMatrix = newMatrix;
+        }
+    }
+
+    @Override
     public boolean remVertex(Vertex<V> vertex) {
-        int vertexIndex = vertices.indexOf(vertex);
+        if(vertex == null){
+            return false;
+        }
+        double vertexIndex = vertices.indexOf(vertex);
         vertices.remove(vertexIndex);
         numVertices--;
 
@@ -54,187 +90,31 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
     }
 
     @Override
-    public Vertex<V> findVertex(String name) {
-        for (int i = 0; i < vertices.size(); i++) {
-            String dato = String.valueOf(vertices.get(i).getDato());
-            if (dato.equals(name)) {
-                return vertices.get(i);
-            }
+    public void addEdge(Vertex<V> source, Vertex<V> destination, double peso){
+        if(source == null || destination == null){
+            return;
         }
-        return null;
-    }
-
-    @Override
-    public GraphListaadyacencia<V> AdjustedWeights(GraphListaadyacencia<V> g, double amountData) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Vertex<V>> Dijsktra(Vertex<V> start, Vertex<V> end) {
-        // Initialize data structures
-        Map<Vertex<V>, Double> distances = new HashMap<>();  // Stores the shortest distances from the source vertex
-        Map<Vertex<V>, Vertex<V>> parents = new HashMap<>();  // Stores the previous vertex in the shortest path
-        Set<Vertex<V>> visited = new HashSet<>();  // Set of visited vertices
-        // Initialize distances with infinity for all vertices except the source
-        for (Vertex<V> vertex : vertices) {
-            distances.put(vertex, Double.MAX_VALUE);
-        }
-        distances.put(start, 0.0);
-        // Create a minimum priority queue to store vertices based on their distances
-        PriorityQueue<Vertex<V>> priorityQueue = new PriorityQueue<>(Comparator.comparingDouble(distances::get));
-        priorityQueue.add(start);
-        // Perform Dijkstra's algorithm
-        while (!priorityQueue.isEmpty()) {
-            // Get the vertex with the minimum distance
-            Vertex<V> minVertex = priorityQueue.poll();
-            if (minVertex.equals(end)) {
-                break;  // Stop the algorithm if the objective vertex is reached
-            }
-            // Mark the current vertex as visited
-            visited.add(minVertex);
-            int iMin = vertices.indexOf(minVertex);
-            // Update distances and parents for adjacent vertices
-            for (int i = 0; i<numVertices;i++) {
-                if (adjacencyMatrix[iMin][i] > 0){
-                    Vertex<V> adjacentVertex = vertices.get(i);
-                    double edgeWeight = adjacencyMatrix[iMin][i];
-                    if (!visited.contains(adjacentVertex)) {
-                        double newDistance = distances.get(minVertex) + edgeWeight;
-                        if (newDistance < distances.get(adjacentVertex)) {
-                            distances.put(adjacentVertex, newDistance);
-                            parents.put(adjacentVertex, minVertex);
-                            priorityQueue.add(adjacentVertex);  // Add the adjacent vertex to the priority queue
-                        }
-                    }
-                }
-            }
-        }
-        // Construct the shortest path
-        ArrayList<Vertex<V>> shortestPath = new ArrayList<>();
-        Vertex<V> currentVertex = end;
-        // Build the path by backtracking through parents
-        while (currentVertex != null) {
-            shortestPath.add(0, currentVertex);
-            currentVertex = parents.get(currentVertex);
-        }
-        return shortestPath;
-    }
-
-    @Override
-    public double[][] floydL() {
-        return new double[0][];
-    }
-
-    @Override
-    public GraphListaadyacencia<V> primL() {
-        return null;
-    }
-
-    @Override
-    public GraphListaadyacencia<V> kruskal() {
-        return null;
-    }
-
-    @Override
-    public GraphAdjacencyMatrix<V> kruskalM() {
-        // Create a new graph to store the minimum spanning tree
-        GraphAdjacencyMatrix minimumSpanningTree = new GraphAdjacencyMatrix<>(numVertices);
-
-        // Create a list to store all the edges in the graph
-        List<Map.Entry<Vertex<V>, Double>> allEdges = new ArrayList<>();
-
-        // Populate the list with all the edges from the graph
-        for (Vertex<V> vertex : vertices) {
-            int i = vertices.indexOf(vertex);
-            for (int j = 0; j < numVertices; j++) {
-                if (adjacencyMatrix[i][j] != 0){
-                    allEdges.add(new AbstractMap.SimpleEntry<>(vertex,adjacencyMatrix[i][j]));
-                }
-            }
-        }
-
-        // Sort the edges in non-decreasing order based on their weights
-        allEdges.sort(Comparator.comparingDouble(Map.Entry::getValue));
-
-        // Create a map to keep track of the connected components
-        Map<Vertex<V>, List<Vertex<V>>> connectedComponents = new HashMap<>();
-
-        // Process each edge in the sorted order
-        for (Map.Entry<Vertex<V>, Double> edge : allEdges) {
-            // Get the source and destination vertices of the edge
-            Vertex<V> source = edge.getKey();
-            Vertex<V> destination = edge.getKey();
-
-            // Check if the source and destination vertices belong to different components
-            List<Vertex<V>> component1 = connectedComponents.get(source);
-            List<Vertex<V>> component2 = connectedComponents.get(destination);
-
-            // If the source vertex doesn't belong to any component, create a new component for it
-            if (component1 == null) {
-                component1 = new ArrayList<>();
-                component1.add(source);
-                connectedComponents.put(source, component1);
-            }
-
-            // If the destination vertex doesn't belong to any component, create a new component for it
-            if (component2 == null) {
-                component2 = new ArrayList<>();
-                component2.add(destination);
-                connectedComponents.put(destination, component2);
-            }
-
-            // If the source and destination vertices belong to different components, merge the components
-            if (!component1.equals(component2)) {
-                // Add the edge to the minimum spanning tree
-                minimumSpanningTree.addEdge(source, destination, edge.getValue());
-
-                // Merge the connected components
-                component1.addAll(component2);
-
-                // Update the component mapping for all vertices in component2
-                for (Vertex<V> vertex : component2) {
-                    connectedComponents.put(vertex, component1);
-                }
-            }
-        }
-
-        // Return the minimum spanning tree graph
-        return minimumSpanningTree;
-    }
-
-    @Override
-    public void addEdge(Vertex<V> origen, Vertex<V> destino, double peso) {
-        int sourceIndex = vertices.indexOf(origen);
-        int destinationIndex = vertices.indexOf(destino);
+        int sourceIndex = vertices.indexOf(source);
+        int destinationIndex = vertices.indexOf(destination);
 
         if (sourceIndex != -1 && destinationIndex != -1) {
             adjacencyMatrix[sourceIndex][destinationIndex] = peso;
             adjacencyMatrix[destinationIndex][sourceIndex] = peso;
         }
+        return;
     }
-
-    @Override
-    public void addVertex(Vertex<V> vertice) {
-        if (!vertices.contains(vertice)) {
-            vertices.add(vertice);
-            numVertices++;
-
-            double[][] newMatrix = new double[numVertices][numVertices];
-            for (int i = 0; i < numVertices - 1; i++) {
-                System.arraycopy(adjacencyMatrix[i], 0, newMatrix[i], 0, numVertices - 1);
-            }
-            adjacencyMatrix = newMatrix;
-        }
-    }
-
     @Override
     public boolean remEdge(Vertex<V> source, Vertex<V> destination) {
+        if(source == null || destination == null){
+            return false;
+        }
         int sourceIndex = vertices.indexOf(source);
         int destinationIndex = vertices.indexOf(destination);
 
         if (sourceIndex != -1 && destinationIndex != -1) {
             adjacencyMatrix[sourceIndex][destinationIndex] = 0;
             adjacencyMatrix[destinationIndex][sourceIndex] = 0;
+            return true;
         }
         return false;
     }
@@ -327,6 +207,100 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
 
         return time;
     }
+
+    @Override
+    public ArrayList<Vertex<V>> Dijsktra(Vertex<V> start, Vertex<V> end) {
+        // Initialize data structures
+        Map<Vertex<V>, Double> distances = new HashMap<>();  // Stores the shortest distances from the source vertex
+        Map<Vertex<V>, Vertex<V>> parents = new HashMap<>();  // Stores the previous vertex in the shortest path
+        Set<Vertex<V>> visited = new HashSet<>();  // Set of visited vertices
+        // Initialize distances with infinity for all vertices except the source
+        for (Vertex<V> vertex : vertices) {
+            distances.put(vertex, Double.MAX_VALUE);
+        }
+        distances.put(start, 0.0);
+        // Create a minimum priority queue to store vertices based on their distances
+        PriorityQueue<Vertex<V>> priorityQueue = new PriorityQueue<>(Comparator.comparingDouble(distances::get));
+        priorityQueue.add(start);
+        // Perform Dijkstra's algorithm
+        while (!priorityQueue.isEmpty()) {
+            // Get the vertex with the minimum distance
+            Vertex<V> minVertex = priorityQueue.poll();
+            if (minVertex.equals(end)) {
+                break;  // Stop the algorithm if the objective vertex is reached
+            }
+            // Mark the current vertex as visited
+            visited.add(minVertex);
+            int iMin = vertices.indexOf(minVertex);
+            // Update distances and parents for adjacent vertices
+            for (int i = 0; i<numVertices;i++) {
+                if (adjacencyMatrix[iMin][i] > 0){
+                    Vertex<V> adjacentVertex = vertices.get(i);
+                    double edgeWeight = adjacencyMatrix[iMin][i];
+                    if (!visited.contains(adjacentVertex)) {
+                        double newDistance = distances.get(minVertex) + edgeWeight;
+                        if (newDistance < distances.get(adjacentVertex)) {
+                            distances.put(adjacentVertex, newDistance);
+                            parents.put(adjacentVertex, minVertex);
+                            priorityQueue.add(adjacentVertex);  // Add the adjacent vertex to the priority queue
+                        }
+                    }
+                }
+            }
+        }
+        // Construct the shortest path
+        ArrayList<Vertex<V>> shortestPath = new ArrayList<>();
+        Vertex<V> currentVertex = end;
+        // Build the path by backtracking through parents
+        while (currentVertex != null) {
+            shortestPath.add(0, currentVertex);
+            currentVertex = parents.get(currentVertex);
+        }
+        return shortestPath;
+    }
+
+    @Override
+    public double[][] floydL() {
+        return new double[0][];
+    }
+
+    public double[][] floydM(){
+
+        int v = vertices.size();
+        double[][] distances = new double[v][v];
+        // Initialize distances with infinity for all pairs of vertices
+        for (int i = 0; i < v; i++) {
+            for (int j = 0; j < v; j++) {
+                distances[i][j] = Double.POSITIVE_INFINITY;
+            }
+        }
+        // Set distance 0 for self-loops
+        for (int i = 0; i < v; i++) {
+            distances[i][i] = 0;
+        }
+
+        for (int i = 0; i < v; i++) {
+            for (int j = 0; j < v; j++) {
+                distances[i][j] = adjacencyMatrix[i][j];
+            }
+        }
+
+        for (int k = 0; k < v; k++) {
+            for (int i = 0; i < v; i++) {
+                for (int j = 0; j < v; j++) {
+                    if (distances[i][k] + distances[k][j] < distances[i][j]) {
+                        distances[i][j] = distances[i][k] + distances[k][j];
+                    }
+                }
+            }
+        }
+        return distances;
+    }
+
+    @Override
+    public GraphListaadyacencia<V> primL() {
+        return null;
+    }
     @Override
     public GraphAdjacencyMatrix<V> primM() {
         if (vertices.size() == 0) {
@@ -397,38 +371,76 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
         return arbolMinimo;
     }
 
+    @Override
+    public GraphListaadyacencia<V> kruskal() {
+        return null;
+    }
 
-    public double[][] floydM(){
+    @Override
+    public GraphAdjacencyMatrix<V> kruskalM() {
+        // Create a new graph to store the minimum spanning tree
+        GraphAdjacencyMatrix minimumSpanningTree = new GraphAdjacencyMatrix<>(numVertices);
 
-        int v = vertices.size();
-        double[][] distances = new double[v][v];
-        // Initialize distances with infinity for all pairs of vertices
-        for (int i = 0; i < v; i++) {
-            for (int j = 0; j < v; j++) {
-                distances[i][j] = Double.POSITIVE_INFINITY;
-            }
-        }
-        // Set distance 0 for self-loops
-        for (int i = 0; i < v; i++) {
-            distances[i][i] = 0;
-        }
+        // Create a list to store all the edges in the graph
+        List<Map.Entry<Vertex<V>, Double>> allEdges = new ArrayList<>();
 
-        for (int i = 0; i < v; i++) {
-            for (int j = 0; j < v; j++) {
-                distances[i][j] = adjacencyMatrix[i][j];
-            }
-        }
-
-        for (int k = 0; k < v; k++) {
-            for (int i = 0; i < v; i++) {
-                for (int j = 0; j < v; j++) {
-                    if (distances[i][k] + distances[k][j] < distances[i][j]) {
-                        distances[i][j] = distances[i][k] + distances[k][j];
-                    }
+        // Populate the list with all the edges from the graph
+        for (Vertex<V> vertex : vertices) {
+            int i = vertices.indexOf(vertex);
+            for (int j = 0; j < numVertices; j++) {
+                if (adjacencyMatrix[i][j] != 0){
+                    allEdges.add(new AbstractMap.SimpleEntry<>(vertex,adjacencyMatrix[i][j]));
                 }
             }
         }
-        return distances;
+
+        // Sort the edges in non-decreasing order based on their weights
+        allEdges.sort(Comparator.comparingDouble(Map.Entry::getValue));
+
+        // Create a map to keep track of the connected components
+        Map<Vertex<V>, List<Vertex<V>>> connectedComponents = new HashMap<>();
+
+        // Process each edge in the sorted order
+        for (Map.Entry<Vertex<V>, Double> edge : allEdges) {
+            // Get the source and destination vertices of the edge
+            Vertex<V> source = edge.getKey();
+            Vertex<V> destination = edge.getKey();
+
+            // Check if the source and destination vertices belong to different components
+            List<Vertex<V>> component1 = connectedComponents.get(source);
+            List<Vertex<V>> component2 = connectedComponents.get(destination);
+
+            // If the source vertex doesn't belong to any component, create a new component for it
+            if (component1 == null) {
+                component1 = new ArrayList<>();
+                component1.add(source);
+                connectedComponents.put(source, component1);
+            }
+
+            // If the destination vertex doesn't belong to any component, create a new component for it
+            if (component2 == null) {
+                component2 = new ArrayList<>();
+                component2.add(destination);
+                connectedComponents.put(destination, component2);
+            }
+
+            // If the source and destination vertices belong to different components, merge the components
+            if (!component1.equals(component2)) {
+                // Add the edge to the minimum spanning tree
+                minimumSpanningTree.addEdge(source, destination, edge.getValue());
+
+                // Merge the connected components
+                component1.addAll(component2);
+
+                // Update the component mapping for all vertices in component2
+                for (Vertex<V> vertex : component2) {
+                    connectedComponents.put(vertex, component1);
+                }
+            }
+        }
+
+        // Return the minimum spanning tree graph
+        return minimumSpanningTree;
     }
 
 }
