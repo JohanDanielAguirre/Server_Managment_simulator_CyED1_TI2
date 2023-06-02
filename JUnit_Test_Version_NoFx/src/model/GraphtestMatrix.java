@@ -375,24 +375,55 @@ public class GraphtestMatrix extends TestCase {
     }
     @Test
     public void testPrimnormalmatrix() {
+        int i=0;
         stage3();
         GraphAdjacencyMatrix g11=g1.primM();
         assertEquals(5,g11.getVertices().size());
         Vertex v=(Vertex) g11.getVertices().get(0);
         assertEquals("Server1",v.getDato());
-        assertEquals(0,v.getAdyacentes().size());
+        i=0;
+        for (int j=0;j<g1.getAdjacencyMatrix()[0].length;j++){
+            if (g1.getAdjacencyMatrix()[0][j]!=Double.POSITIVE_INFINITY && g1.getAdjacencyMatrix()[0][j]!=0){
+                i++;
+            }
+        }
+        assertEquals(4,i);
         v=(Vertex) g11.getVertices().get(1);
         assertEquals("Server2",v.getDato());
-        assertEquals(1,v.getAdyacentes().size());
+        i=0;
+        for (int j=0;j<g1.getAdjacencyMatrix()[1].length;j++){
+            if (g1.getAdjacencyMatrix()[1][j]!=Double.POSITIVE_INFINITY && g1.getAdjacencyMatrix()[0][j]!=0){
+                i++;
+            }
+        }
+        assertEquals(4,i);
         v=(Vertex) g11.getVertices().get(2);
         assertEquals("Server3",v.getDato());
-        assertEquals(1,v.getAdyacentes().size());
+        i=0;
+        for (int j=0;j<g1.getAdjacencyMatrix()[2].length;j++){
+            if (g1.getAdjacencyMatrix()[2][j]!=Double.POSITIVE_INFINITY && g1.getAdjacencyMatrix()[0][j]!=0){
+                i++;
+            }
+        }
+        assertEquals(4,i);
         v=(Vertex) g11.getVertices().get(3);
         assertEquals("Server4",v.getDato());
-        assertEquals(1,v.getAdyacentes().size());
+        i=0;
+        for (int j=0;j<g1.getAdjacencyMatrix()[3].length;j++){
+            if (g1.getAdjacencyMatrix()[3][j]!=Double.POSITIVE_INFINITY && g1.getAdjacencyMatrix()[0][j]!=0){
+                i++;
+            }
+        }
+        assertEquals(4,i);
         v=(Vertex) g11.getVertices().get(4);
         assertEquals("Server5",v.getDato());
-        assertEquals(2,v.getAdyacentes().size());
+        i=0;
+        for (int j=0;j<g1.getAdjacencyMatrix()[4].length;j++){
+            if (g1.getAdjacencyMatrix()[4][j]!=Double.POSITIVE_INFINITY && g1.getAdjacencyMatrix()[0][j]!=0){
+                i++;
+            }
+        }
+        assertEquals(4,i);
     }
     @Test
     public void testkruskalalldisconnectmatrix() {
