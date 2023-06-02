@@ -145,8 +145,13 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
 
         // Populate the list with all the edges from the graph
         for (Vertex<V> vertex : vertices) {
-            allEdges.addAll(vertex.getAdyacentes());
-        } // I need to change this part exactly and it is done
+            int i = vertices.indexOf(vertex);
+            for (int j = 0; j < numVertices; j++) {
+                if (adjacencyMatrix[i][j] != 0){
+                    allEdges.add(new AbstractMap.SimpleEntry<>(vertex,adjacencyMatrix[i][j]));
+                }
+            }
+        }
 
         // Sort the edges in non-decreasing order based on their weights
         allEdges.sort(Comparator.comparingDouble(Map.Entry::getValue));
