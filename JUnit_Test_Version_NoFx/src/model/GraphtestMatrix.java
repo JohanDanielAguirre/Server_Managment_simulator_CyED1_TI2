@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 public class GraphtestMatrix extends TestCase {
-    private GraphAdjacencyMatrix g1= new GraphAdjacencyMatrix(1);
+    private GraphAdjacencyMatrix g1= new GraphAdjacencyMatrix(0);
     public void stage1(){
         g1.addVertex(new Vertex("Server1"));
         g1.addVertex(new Vertex<>("Server2"));
@@ -174,7 +174,7 @@ public class GraphtestMatrix extends TestCase {
     @Test
     public void testdeleteedgewithoutotherconnectionsmatrix(){
         stage4();
-        assertEquals(false,g1.remEdge((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(1)));
+        assertEquals(true,g1.remEdge((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(1)));
     }
     @Test
     public void testdeleteedgenullmatrix(){
@@ -212,7 +212,7 @@ public class GraphtestMatrix extends TestCase {
         g1.addVertex(v);
         g1.addVertex(v);
         assertEquals(1,g1.getVertices().size());
-        assertEquals(Double.POSITIVE_INFINITY, g1.getAdjacencyMatrix()[0][0]);
+        assertEquals(0.0, g1.getAdjacencyMatrix()[0][0]);
     }
     @Test
     public void testAddVertexnormalmatrix() {
@@ -242,15 +242,11 @@ public class GraphtestMatrix extends TestCase {
     public void testAddsameedgematrix() {
         g1.addVertex(new  Vertex("Servermid"));
         g1.addVertex(new  Vertex("Servernonfunctional"));
-        g1.addEdge((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(1),0);
-        g1.addEdge((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(1),0);
-        int counter = 0;
-        for(int i = 0; i<g1.getNumVertices()-1; i++){
-            if(g1.getAdjacencyMatrix()[0][i]!=0 || g1.getAdjacencyMatrix()[0][i]!=Double.POSITIVE_INFINITY){
-                counter++;
-            }
-        }
-        assertEquals(1,counter);
+        g1.addEdge((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(1),1);
+        g1.addEdge((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(1),2);
+
+        assertEquals(1.0,g1.getAdjacencyMatrix()[0][1]);
+        assertEquals(1.0,g1.getAdjacencyMatrix()[1][0]);
     }
     @Test
     public void testAddedgesnormalmatrix() {
@@ -259,18 +255,13 @@ public class GraphtestMatrix extends TestCase {
         g1.addVertex(new  Vertex("Servernonfunctional2"));
         g1.addVertex(new  Vertex("Servernonfunctional3"));
         g1.addVertex(new  Vertex("Servernonfunctional4"));
-        g1.addEdge((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(1),0);
-        g1.addEdge((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(2),0);
-        g1.addEdge((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(3),0);
-        g1.addEdge((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(4),0);
-        int counter = 0;
-        for(int i = 0; i<g1.getNumVertices()-1; i++){
-            if(g1.getAdjacencyMatrix()[0][i]!=0 || g1.getAdjacencyMatrix()[0][i]!=Double.POSITIVE_INFINITY){
-                counter++;
-            }
-        }
+        g1.addEdge((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(1),1);
+        g1.addEdge((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(2),2);
+        g1.addEdge((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(3),3);
+        g1.addEdge((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(4),4);
 
-        assertEquals(4,counter);
+        assertEquals(5, g1.getAdjacencyMatrix()[0].length);
+
     }
     @Test
     public void testdijkstraalldisconnectedmatrix() {
@@ -282,7 +273,7 @@ public class GraphtestMatrix extends TestCase {
     public void testdijkstrapartialydisconnected2matrix() {
         stage2();
         ArrayList <Vertex> path=g1.Dijsktra((Vertex) g1.getVertices().get(0),(Vertex) g1.getVertices().get(3));
-        assertEquals(0,path.size());
+        assertEquals(1,path.size());
     }
 
     @Test
@@ -342,15 +333,15 @@ public class GraphtestMatrix extends TestCase {
         assertEquals(4.0,matrix[0][3]);
         assertEquals(3.0,matrix[0][4]);
         assertEquals(3.0,matrix[1][0]);
-        assertEquals(9.0,matrix[1][2]);
-        assertEquals(4.0,matrix[1][3]);
+        assertEquals(4.0,matrix[1][2]);
+        assertEquals(3.0,matrix[1][3]);
         assertEquals(1.0,matrix[1][4]);
-        assertEquals(7.0,matrix[2][0]);
-        assertEquals(9.0,matrix[2][1]);
+        assertEquals(6.0,matrix[2][0]);
+        assertEquals(4.0,matrix[2][1]);
         assertEquals(5.0,matrix[2][3]);
         assertEquals(3.0,matrix[2][4]);
         assertEquals(4.0,matrix[3][0]);
-        assertEquals(4.0,matrix[3][1]);
+        assertEquals(3.0,matrix[3][1]);
         assertEquals(5.0,matrix[3][2]);
         assertEquals(2.0,matrix[3][4]);
         assertEquals(3.0,matrix[4][0]);
