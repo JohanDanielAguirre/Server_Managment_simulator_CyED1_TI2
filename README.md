@@ -11,4 +11,4 @@ In 2023 there’s been a dire need for services that enable companies to quickly
 The system needs a javafx interface with an always showing diagram of all servers and server connections. Must have a add server button which includes name of server, and IP address. Must have a add connection button which links servers through the IP’s.
 
 ## Aclaration: 
-The tests on the JavaFX don't work as intented. It throws an Error calles IllegalAccesError, we tried to fixed it doesn't work no matter what. So we decided to create to projects, one with the unit tests and the other with the javaFX project.
+The tests on the JavaFX don't work as intented. It throws an Error calles IllegalAccesError, we tried to fixed it doesn't work no matter what. So we decided to create two projects, one with the unit tests and the other with the javaFX project.
