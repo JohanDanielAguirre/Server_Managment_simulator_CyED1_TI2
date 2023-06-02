@@ -67,6 +67,7 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
             return;
         }
         vertices.add(vertex);
+        numVertices++;
 
         int size = adjacencyMatrix.length;
         double[][] newMatrix = new double[size + 1][size + 1];
@@ -117,6 +118,7 @@ public class GraphAdjacencyMatrix<V> implements Graph<V>{
 
         if (vertexIndex != -1) {
             vertices.remove(vertexIndex);
+            numVertices--;
 
             int size = adjacencyMatrix.length;
             double[][] newMatrix = new double[size - 1][size - 1];
